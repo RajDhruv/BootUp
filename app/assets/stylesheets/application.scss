@@ -5447,6 +5447,27 @@ a.badge-dark:focus, a.badge-dark.focus {
   border-radius: 0;
 }
 
+.jumbotron::-webkit-scrollbar {
+    width: 10px;
+    background-color:black;
+    border-radius:10px;
+}
+
+.jumbotron::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+ 
+
+.jumbotron::-webkit-scrollbar-thumb {
+    background: grey; 
+    border-radius: 10px;
+}
+
+.jumbotron::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+}
+
 .alert {
   position: relative;
   padding: 0.75rem 1.25rem;
