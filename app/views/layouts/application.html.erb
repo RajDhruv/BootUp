@@ -4,9 +4,10 @@
     <title>BootUp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= stylesheet_link_tag 'noty'%>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'noty.min.js'%>
   </head>
 
   <body>
@@ -26,10 +27,7 @@
         <div class="cols cols-md-8" style="width: 72%;">    
           <div class="jumbotron" style="height:82vh;overflow-y: scroll;">
             <%if notice%>
-              <div class="alert alert-dismissible alert-success">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <%=notice%>
-              </div>
+              <%=render partial:'shared/noty',locals:{message:notice,type:"success"}%>
             <%end%>
             <%= yield %>
           </div>
