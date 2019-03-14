@@ -28,6 +28,7 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
+        session[:noty_type]='success'
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
         format.json { render :show, status: :created, location: @blog }
       else
@@ -55,6 +56,7 @@ class BlogsController < ApplicationController
   # DELETE /blogs/1.json
   def destroy
     @blog.destroy
+    session[:noty_type]='error'
     respond_to do |format|
       format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
       format.json { head :no_content }
