@@ -27,7 +27,8 @@
         <div class="cols cols-md-8" style="width: 72%;">    
           <div class="jumbotron" style="height:82vh;overflow-y: scroll;">
             <%if notice%>
-              <%=render partial:'shared/noty',locals:{message:notice,type:"success"}%>
+
+              <%=render partial:'shared/noty',locals:{message:notice,type:notice.include?('destroy')? 'error' : 'success'}%>
             <%end%>
             <%= yield %>
           </div>
