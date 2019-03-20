@@ -1,6 +1,6 @@
 <%case from%>
 <%when :edit%>
-$("#playground").html("<%=escape_javascript(render partial:'edit_form')%>");
+$("#playground").html("<%=j render partial:'edit_form'%>");
 $("#edit_profile_message").click();
 
 <%end%>
