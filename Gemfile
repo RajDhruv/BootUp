@@ -30,6 +30,7 @@ gem 'devise', '~> 4.6', '>= 4.6.1'
 gem 'petergate', '~> 2.0', '>= 2.0.1'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'jquery-rails'
+gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

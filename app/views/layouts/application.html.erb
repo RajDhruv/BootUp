@@ -11,38 +11,46 @@
   </head>
 
   <body>
-  
-
-    <%=render 'shared/nav.html.erb'%>
-    <div class="container">
+    
       <%if current_user%>
-      <div class="row" style="padding-top: 1.5%;">  
-        <div class="cols cols-md-3" style="padding-right: 1.5%;">
-          <%= render 'shared/user_details.html.erb' %>
-        </div>
-        <div class="cols cols-md-1">
-          &nbsp;
-        </div>
-        
-        <div class="cols cols-md-8" style="width: 72%;">    
-          <div class="jumbotron" style="height:82vh;overflow-y: scroll;">
-            <%if notice%>
-
-              <%=render partial:'shared/noty',locals:{message:notice,type:(session[:noty_type] rescue 'success')}%>
+        <%=render 'shared/nav.html.erb'%>
+        <div class="container">
+            <%unless current_user.profile.is_complete?%>
+              <center>
+                <div class="alert alert-dismissible alert-info" style="position: absolute;z-index: 99999;width: 80%;">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Heads up!</strong> Your Profile Seems To Be Incomplete. <a href="#" class="alert-link">Click Here</a> To Complete.
+                </div>
+              </center>
             <%end%>
-            <%= yield %>
+          <div class="row" style="padding-top: 1.5%;">  
+            <div class="cols cols-md-3" style="padding-right: 1.5%;">
+              <%= render 'shared/user_details.html.erb' %>
+            </div>
+            <div class="cols cols-md-1">
+              &nbsp;
+            </div>
+            
+            <div class="cols cols-md-8" style="width: 72%;">    
+              <div class="jumbotron" style="height:82vh;overflow-y: auto;">
+                <%if notice%>
+                  <%=render partial:'shared/noty',locals:{message:notice,type:(session[:noty_type] rescue 'success')}%>
+                <%end%>
+                <%= yield %>
+              </div>
+            </div>    
           </div>
-        </div>    
-      </div>
+        </div>
       <%else%>
-        <center style="padding-top: 1.5%">
-          <div class="jumbotron" style="width: 45%;height: 82vh;overflow-y: scroll;">
-            <%= yield %>    
-          </div>
-        </center>
+        <div class="container">
+          <center style="padding-top: 1.5%">
+            <div class="jumbotron" style="width: 45%;height: 82vh;overflow-y: auto;">
+              <%= yield %>    
+            </div>
+          </center>
+        </div>
       <%end%>
-    </div>
-
+    
     <%=render 'shared/footer.html.erb'%>
   </body>
 </html>

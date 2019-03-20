@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  first_name: MyString
+  last_name: MyString
+  dob: 2019-03-20 21:02:30
+
+two:
+  user: two
+  first_name: MyString
+  last_name: MyString
+  dob: 2019-03-20 21:02:30
