@@ -22,4 +22,8 @@ class User < ApplicationRecord
     end
   end
 
+  def images
+    self.profile.images
+  end
+
 end

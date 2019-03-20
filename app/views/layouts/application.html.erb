@@ -15,11 +15,11 @@
       <%if current_user%>
         <%=render 'shared/nav.html.erb'%>
         <div class="container">
-            <%unless current_user.profile.is_complete?%>
+            <%unless current_user.profile.present? && current_user.profile.is_complete?%>
               <center>
                 <div class="alert alert-dismissible alert-info" style="position: absolute;z-index: 99999;width: 80%;">
-                  <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  <strong>Heads up!</strong> Your Profile Seems To Be Incomplete. <a href="#" class="alert-link">Click Here</a> To Complete.
+                  <button type="button" class="close" data-dismiss="alert" id="edit_profile_message">&times;</button>
+                  <strong>Heads up!</strong> Your Profile Seems To Be Incomplete. <%=link_to "Click Here",profile_edit_path,remote: :true%> To Complete.
                 </div>
               </center>
             <%end%>
@@ -32,7 +32,7 @@
             </div>
             
             <div class="cols cols-md-8" style="width: 72%;">    
-              <div class="jumbotron" style="height:82vh;overflow-y: auto;">
+              <div class="jumbotron" style="height:82vh;overflow-y: auto;" id="playground">
                 <%if notice%>
                   <%=render partial:'shared/noty',locals:{message:notice,type:(session[:noty_type] rescue 'success')}%>
                 <%end%>

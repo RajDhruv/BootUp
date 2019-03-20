@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  patch 'profile/update'
+  get 'profile/edit'
+  get 'profile/show'
   devise_for :users
   resources :blogs
   root "blogs#index"
