@@ -22,5 +22,6 @@
     </form>
     &nbsp;
     <%=link_to "Logout",destroy_user_session_path,method: :delete,class:"btn btn-outline-danger" if current_user%>
+    <%=link_to "Profile",profile_edit_path,remote: :true if current_user%>
   </div>
 </nav>

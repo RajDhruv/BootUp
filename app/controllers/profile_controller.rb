@@ -18,7 +18,11 @@ class ProfileController < ApplicationController
   def show
   end
   def image
-  	byebug
+  	image=Image.new
+    image.location=params[:file]
+    image.imageable=current_user.profile
+    image.save!
+    redirect_to root_path
   end
 
   private 
