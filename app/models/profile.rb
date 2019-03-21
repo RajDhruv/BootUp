@@ -8,4 +8,5 @@ class Profile < ApplicationRecord
   	end
   	return true
   end
+
 end

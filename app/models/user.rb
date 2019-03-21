@@ -26,4 +26,10 @@ class User < ApplicationRecord
     self.profile.images
   end
 
+  def profile_image
+    all_images=self.profile.images
+    latest_image=all_images.select{|x| x if x.latest}.last
+    latest_image.location.url rescue ""
+  end
+
 end
