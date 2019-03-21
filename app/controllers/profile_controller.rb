@@ -17,7 +17,9 @@ class ProfileController < ApplicationController
 
   def show
   end
-
+  def image
+  	byebug
+  end
 
   private 
   	def profile_params

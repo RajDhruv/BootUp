@@ -16,4 +16,10 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require dropzone
 //= require_tree .
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});

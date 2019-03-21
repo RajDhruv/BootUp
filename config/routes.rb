@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   patch 'profile/update'
   get 'profile/edit'
   get 'profile/show'
+  post '/example',to:"profile#image"
   devise_for :users
   resources :blogs
   root "blogs#index"
