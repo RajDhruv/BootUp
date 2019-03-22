@@ -32,4 +32,12 @@ class User < ApplicationRecord
     latest_image.location.url rescue ""
   end
 
+  def display_name
+    user_profile=self.profile
+    first_name = user_profile.first_name rescue ""
+    last_name = user_profile.last_name rescue ""
+    full_name = "#{first_name} #{last_name}"
+    full_name = full_name.strip.empty? ?self.email.split('@').first : full_name
+  end
+
 end

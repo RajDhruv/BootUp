@@ -1,10 +1,12 @@
 <div class="card" style="width: 18rem;height:82vh;">
   <center>
-  <%user_profile=current_user.profile_image%>
-    <img class="card-img-top" src="<%=user_profile%>" alt="Card image cap" style="border-radius: 50%; width:60%;padding-top: 5%;">
+    <img class="card-img-top" src="<%=profile_display_image(current_user)%>" alt="Card image cap" style="border-radius: 50%; width:60%;padding-top: 5%;">
   </center>
+  <div style="position:absolute;">
+    <%=link_to "Profile",profile_edit_path,remote: :true if current_user%>
+  </div>
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
+    <h5 class="card-title"><%=current_user.display_name%></h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
   <ul class="list-group list-group-flush">
