@@ -1,8 +1,6 @@
-<div id="mydropzone" style="width: 80%;min-height: 20vh;">
-	
-</div>
 
 <script type="text/javascript">
+	var file1;
 $("#mydropzone").dropzone({
     url: "<%=url%>",
     addRemoveLinks : false,
@@ -11,7 +9,43 @@ $("#mydropzone").dropzone({
     dictResponseError: 'Error uploading file!',
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+      success: function(file, response){
+      	file1=file;
+       $('#profile_picture').attr("src",file.dataURL);
     }
 }).html("<div class='dz-default dz-message'><span><span class='deboss'>Drag and Drop File Here </span>/ <span class='dz-clickable' id='browsebtn'>Browse</span></span></div>");
 $('#mydropzone').addClass("dropzone");
+
 </script>
+
+<div class="logowrp clearfix" id="upload_area">
+
+	<div class="pull-left logowrpLeft">
+	 <div class="pull-left" > 
+	 	<img src="<%=profile_display_image(current_user)%>" height="59" width="59">
+	 </div>
+		<div class="logowrpLefttext">
+			<%=link_to "+#{current_user.image_count}",profile_carousel_path,remote:true%>		
+		</div>
+		<div class="Logodivider">OR</div>
+		
+	</div>
+	<div class="pull-right logowrpRight">
+	  	
+		  	<div id="mydropzone" style="width: 100%;height: 100%;padding: 15px 0 15px 0">	
+			</div>
+		
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 <div class="card" style="width: 18rem;height:82vh;">
   <center>
-    <img class="card-img-top" src="<%=profile_display_image(current_user)%>" alt="Card image cap" style="border-radius: 50%; width:60%;padding-top: 5%;">
+    <img class="card-img-top" id="profile_picture" src="<%=profile_display_image(current_user)%>" alt="Card image cap" style="border-radius: 50%; width:60%;padding-top: 5%;">
   </center>
   <div style="position:absolute;">
     <%=link_to "Profile",profile_edit_path,remote: :true if current_user%>

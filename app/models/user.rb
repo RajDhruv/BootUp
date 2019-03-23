@@ -40,4 +40,8 @@ class User < ApplicationRecord
     full_name = full_name.strip.empty? ?self.email.split('@').first : full_name
   end
 
+  def image_count
+    self.profile.images.count - 1
+  end
+
 end
