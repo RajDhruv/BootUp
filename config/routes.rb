@@ -8,10 +8,10 @@ Rails.application.routes.draw do
 		  get "profile_image_carousel",as:"profile_carousel"
 		  post "image",as:'image_upload'
 		  get 'close_carousel',as:"close_carousel"
+		  post 'dp/:id',to:'profile#make_dp',as:"make_profile_image"
 		end
 	end
 
-  post '/profile/dp/:id',to:'profile#make_dp',as:"make_profile_image"
   devise_for :users
   resources :blogs
   root "blogs#index"

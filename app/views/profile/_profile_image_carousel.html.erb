@@ -1,15 +1,19 @@
 <style type="text/css">
   .get_in_the_middle{
-    padding:27px 0 23px 0;;
+    padding:0px 0 30px 0;
+  }
+  .caraousel_close{
+    padding:0px 10px 0px 0;
+    font-size: x-large;
   }
 </style>
 <div id="demo" class="carousel slide" data-ride="carousel" data-interval=false style="margin:auto;">
-  <%=link_to "&times;".html_safe,close_carousel_profile_index_path,remote:true,class:"pull-right"%>
+  <%=link_to "&times;".html_safe,close_carousel_profile_index_path,remote:true,class:"pull-right caraousel_close"%>
   <div class="carousel-inner">
     
   <%@images.each_with_index do |image,idx|%>
     <div class="get_in_the_middle carousel-item text-center <%='active' if idx==0%>">
-      <%=link_to (image_tag image.location.to_s,{height:59,width:59}),make_profile_image_path(image.id),method: :post,remote:true%>
+      <%=link_to (image_tag image.location.to_s,{height:59,width:59}),make_profile_image_profile_index_path(image.id),method: :post,remote:true%>
     </div>
   <%end%>
   <br>  
