@@ -4,4 +4,13 @@ $("#playground").html("<%=j render partial:'edit_form'%>");
 $("#edit_profile_message").click();
 <%when :update_bio%>
 $('#user_bio').html("<i><b>\"</b><span onclick='edit_bio()' style='cursor: pointer'><%=current_user.profile.bio%></span><b>\"</b></i>");
+<%when :profile_image_carousel%>
+$('#upload_area').fadeOut();
+$("#upload_area").html("<%=j render partial:'profile_image_carousel'%>");
+$("#upload_area").fadeIn();
+$('#upload_area').css('background-color', 'rgba(128, 128, 128, 0.5)');
+<%when :make_dp%>
+$('#profile_picture').attr("src","<%=@image.location.to_s%>");
+<%when :image%>
+$('#profile_picture').attr("src","<%=@image.location.to_s%>");
 <%end%>

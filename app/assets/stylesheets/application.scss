@@ -3,7 +3,53 @@
 /*
 
 */
-
+.logowrp {
+    color: #82878b;
+    min-height: 110px;
+    border: 1px dashed #cdd1d4;
+    background: white;
+    width: 97%;
+}
+.logowrpLeft {
+    width: 50%;
+    padding: 26px 50px;
+    box-sizing: border-box;
+    position: relative;
+    background-color: #f5f5f5;
+}
+.logowrpLefttext {
+    font-size: 14px;
+    position: relative;
+    top: 20px;
+    margin-left: 70px;
+}
+.Logodivider {
+    background-color: #fff;
+    border-radius: 50% 0 0 50%;
+    height: 32px;
+    line-height: 34px;
+    padding-left: 12px;
+    position: absolute;
+    right: 0;
+    top: 35%;
+    width: 27px;
+}
+.logowrpRight {
+    width: 50%;
+}
+.dropzone {
+    min-height: 10px;
+    border: 1px dashed transparent;
+    background: white;
+    width: 100%;
+    padding: 0px;
+}
+.pull-left{
+  float:left;
+}
+.pull-right{
+  float:right;
+}
 /*!
  * Bootswatch v4.3.1
  * Homepage: https://bootswatch.com

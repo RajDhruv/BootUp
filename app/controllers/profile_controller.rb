@@ -18,11 +18,24 @@ class ProfileController < ApplicationController
   def show
   end
   def image
-  	image=Image.new
-    image.location=params[:file]
-    image.imageable=current_user.profile
-    image.save!
-    redirect_to root_path
+  	@image=Image.new
+    @image.location=params[:file]
+    @image.imageable=current_user.profile
+    @image.save!
+    render partial:"router.js.erb",locals:{from: :image}
+  end
+
+  def make_dp
+    @image=Image.find(params[:id])
+    @image.update(latest:true)
+    render partial:"router.js.erb",locals:{from: :make_dp}
+  end
+  def profile_image_carousel
+    @images=current_user.images
+    render partial:"router.js.erb",locals:{from: :profile_image_carousel}
+  end
+  def close_carousel
+    render partial:"router.js.erb",locals:{from: :edit}
   end
 
   def update_bio

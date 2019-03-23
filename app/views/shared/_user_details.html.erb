@@ -1,7 +1,7 @@
 <div class="card" style="width: 18rem;height:82vh;">
 <div class="profile_edit_tooltip">
   <center>
-    <img class="card-img-top" src="<%=profile_display_image(current_user)%>" alt="Card image cap" style="border-radius: 50%; width:60%;padding-top: 5%;">
+    <img class="card-img-top" id="profile_picture" src="<%=profile_display_image(current_user)%>" alt="Card image cap" style="border-radius: 50%; width:60%;padding-top: 5%;">
   </center>
   <span class="profile_edit_tooltip_link">
     <%edit_profile_image="<img src='#{asset_path('default_logos/edit_profile.png')}' alt='Edit Profile' height='30' width='30' title='Edit Profile'>"%>
