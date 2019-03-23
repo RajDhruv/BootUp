@@ -9,7 +9,8 @@
   </span>
   <div class="card-body">
     <h5 class="card-title"><%=current_user.display_name%></h5>
-    <label class="card-text" id="user_bio" style="width:100%;"><p onclick="edit_bio()">Some quick example text to build on the card title and make up the bulk of the card's content.</p></label>
+    <%bio_display=(current_user.profile.bio.nil?) ? "My Bio" : current_user.profile.bio%>
+    <label class="card-text" id="user_bio" style="width:100%;"><i><b>"</b><span onclick="edit_bio()" style="cursor: pointer"><%=bio_display%></span><b>"</b></i></label>
   </div>
   </div>
   <ul class="list-group list-group-flush">
@@ -25,9 +26,33 @@
 <script type="text/javascript">
   function edit_bio()
   {
-    bio_text=$('#user_bio').find('p').html();
+    bio_text=$('#user_bio').find('span').html();
     setTimeout(function() {
       $('#user_bio').html('<textarea id="user_bio_edit_area" style="width:100%;">'+bio_text+'</textarea>');
+      $('#user_bio_edit_area').keydown(function(e) {
+        bio_update_text=$('#user_bio_edit_area').val();
+        if(e.keyCode == 13) {
+          if(bio_update_text.trim()=="")
+          {
+            $('#user_bio').html("<i><b>\"</b><span onclick='edit_bio()' style='cursor: pointer'>"+bio_text+"</span><b>\"</b></i>");
+          }
+          else if(bio_update_text.trim()==bio_text.trim())
+          {
+            $('#user_bio').html("<i><b>\"</b><span onclick='edit_bio()' style='cursor: pointer'>"+bio_text+"</span><b>\"</b></i>");
+          }
+          else
+          {
+            $.ajax({
+              type:"post",
+              url:"profile/update_bio?update_text="+bio_update_text,
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+            })
+          }
+        }
+      })
     }, 200);
   }
+  
 </script>
