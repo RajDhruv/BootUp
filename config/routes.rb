@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   patch 'profile/update'
   get 'profile/edit'
   get 'profile/show'
+  post 'profile/update_bio'
   get 'image/carousel',to:"profile#profile_image_carousel",as:"profile_carousel"
   post '/example',to:"profile#image"
   post '/profile/dp/:id',to:'profile#make_dp',as:"make_profile_image"

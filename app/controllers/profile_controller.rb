@@ -38,6 +38,10 @@ class ProfileController < ApplicationController
     render partial:"router.js.erb",locals:{from: :edit}
   end
 
+  def update_bio
+    current_user.profile.update_attribute(:bio, params[:update_text])
+    render partial:"router.js.erb",locals:{from: :update_bio}
+  end
   private 
   	def profile_params
       params.require(:profile).permit(:first_name, :last_name,:dob,:country)

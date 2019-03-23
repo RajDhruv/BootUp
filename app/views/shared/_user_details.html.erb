@@ -1,13 +1,17 @@
 <div class="card" style="width: 18rem;height:82vh;">
+<div class="profile_edit_tooltip">
   <center>
     <img class="card-img-top" id="profile_picture" src="<%=profile_display_image(current_user)%>" alt="Card image cap" style="border-radius: 50%; width:60%;padding-top: 5%;">
   </center>
-  <div style="position:absolute;">
-    <%=link_to "Profile",profile_edit_path,remote: :true if current_user%>
-  </div>
+  <span class="profile_edit_tooltip_link">
+    <%edit_profile_image="<img src='#{asset_path('default_logos/edit_profile.png')}' alt='Edit Profile' height='30' width='30' title='Edit Profile'>"%>
+    <%=link_to edit_profile_image.html_safe,profile_edit_path,remote: :true if current_user%>
+  </span>
   <div class="card-body">
     <h5 class="card-title"><%=current_user.display_name%></h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <%bio_display=(current_user.profile.bio.nil?) ? "My Bio" : current_user.profile.bio%>
+    <label class="card-text" id="user_bio" style="width:100%;"><i><b>"</b><span onclick="edit_bio()" style="cursor: pointer"><%=bio_display%></span><b>"</b></i></label>
+  </div>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Cras justo odio</li>
@@ -19,3 +23,36 @@
     <a href="#" class="card-link">Another link</a>
   </div>
 </div>
+<script type="text/javascript">
+  function edit_bio()
+  {
+    bio_text=$('#user_bio').find('span').html();
+    setTimeout(function() {
+      $('#user_bio').html('<textarea id="user_bio_edit_area" style="width:100%;">'+bio_text+'</textarea>');
+      $('#user_bio_edit_area').keydown(function(e) {
+        bio_update_text=$('#user_bio_edit_area').val();
+        if(e.keyCode == 13) {
+          if(bio_update_text.trim()=="")
+          {
+            $('#user_bio').html("<i><b>\"</b><span onclick='edit_bio()' style='cursor: pointer'>"+bio_text+"</span><b>\"</b></i>");
+          }
+          else if(bio_update_text.trim()==bio_text.trim())
+          {
+            $('#user_bio').html("<i><b>\"</b><span onclick='edit_bio()' style='cursor: pointer'>"+bio_text+"</span><b>\"</b></i>");
+          }
+          else
+          {
+            $.ajax({
+              type:"post",
+              url:"profile/update_bio?update_text="+bio_update_text,
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+            })
+          }
+        }
+      })
+    }, 200);
+  }
+  
+</script>
