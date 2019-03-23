@@ -1,6 +1,5 @@
 
 <script type="text/javascript">
-	var file1;
 $("#mydropzone").dropzone({
     url: "<%=url%>",
     addRemoveLinks : false,
@@ -11,7 +10,6 @@ $("#mydropzone").dropzone({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
       success: function(file, response){
-      	file1=file;
        $('#profile_picture').attr("src",file.dataURL);
     }
 }).html("<div class='dz-default dz-message'><span><span class='deboss'>Drag and Drop File Here </span>/ <span class='dz-clickable' id='browsebtn'>Browse</span></span></div>");
@@ -26,7 +24,7 @@ $('#mydropzone').addClass("dropzone");
 	 	<img src="<%=profile_display_image(current_user)%>" height="59" width="59">
 	 </div>
 		<div class="logowrpLefttext">
-			<%=link_to "+#{current_user.image_count}",profile_carousel_path,remote:true%>		
+			<%=link_to "+#{current_user.image_count}",profile_carousel_profile_index_path,remote:true%>		
 		</div>
 		<div class="Logodivider">OR</div>
 		

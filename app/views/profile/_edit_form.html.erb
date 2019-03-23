@@ -1,4 +1,4 @@
-<%=form_for @profile,url:profile_update_path do |f|%>
+<%=form_for @profile,url:profile_index_path,remote:true do |f|%>
 	<div class="form-group">
 		<%=f.label :first_name%>
 		<%=f.text_field :first_name,class:"form-control"%>
@@ -19,4 +19,6 @@
 		<%=f.submit "Save",class: "btn btn-warning"%>
 	</div>
 <%end%>
-<%=render partial:"shared/dropzone",locals:{url:"/example"}%>
+<div id="profile_pic_dropzone">
+	<%=render partial:"shared/dropzone",locals:{url: image_upload_profile_index_path.to_s}%>
+</div>

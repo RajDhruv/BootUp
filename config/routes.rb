@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
-  patch 'profile/update'
-  get 'profile/edit'
-  get 'profile/show'
-  post 'profile/update_bio'
-  get 'image/carousel',to:"profile#profile_image_carousel",as:"profile_carousel"
-  post '/example',to:"profile#image"
+	resources :profile, except: [:new, :create, :edit, :update, :destroy, :index, :show] do
+		collection do
+		  patch 'update'
+		  get 'edit'
+		  get 'show'
+		  post 'update_bio'
+		  get "profile_image_carousel",as:"profile_carousel"
+		  post "image",as:'image_upload'
+		  get 'close_carousel',as:"close_carousel"
+		end
+	end
+
   post '/profile/dp/:id',to:'profile#make_dp',as:"make_profile_image"
-  get '/carousel/close',to:'profile#close_carousel',as:"close_carousel"
   devise_for :users
   resources :blogs
   root "blogs#index"

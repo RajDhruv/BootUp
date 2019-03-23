@@ -13,4 +13,8 @@ $('#upload_area').css('background-color', 'rgba(128, 128, 128, 0.5)');
 $('#profile_picture').attr("src","<%=@image.location.to_s%>");
 <%when :image%>
 $('#profile_picture').attr("src","<%=@image.location.to_s%>");
+<%when :close_carousel%>
+$('#profile_pic_dropzone').html("<%=j render partial:'shared/dropzone',locals:{url: image_upload_profile_index_path.to_s}%>");
+<%when :update%>
+location.reload();
 <%end%>
