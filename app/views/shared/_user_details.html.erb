@@ -1,18 +1,19 @@
 <div class="card" style="width: 18rem;height:82vh;">
-<div class="profile_edit_tooltip">
+<div class="profile_pic_bg">
   <center>
     <img class="card-img-top" id="profile_picture" src="<%=profile_display_image(current_user)%>" alt="Card image cap" height="200" style="border-radius: 50%; width:65%;padding-top: 5%;">
+    <div class="profile_edit_overlay">
+    <%#edit_profile_image="<img src='#{asset_path('default_logos/edit_profile.png')}' alt='Edit Profile' height='30' width='30' title='Edit Profile'>"%>
+    <%=link_to "<h5>Edit Profile</h5>".html_safe,edit_profile_index_path,remote: :true if current_user%>
+  </div>
   </center>
-  <span class="profile_edit_tooltip_link">
-    <%edit_profile_image="<img src='#{asset_path('default_logos/edit_profile.png')}' alt='Edit Profile' height='30' width='30' title='Edit Profile'>"%>
-    <%=link_to edit_profile_image.html_safe,edit_profile_index_path,remote: :true if current_user%>
-  </span>
+</div>
   <div class="card-body">
     <h5 class="card-title"><%=current_user.display_name%></h5>
     <%bio_display=(current_user.profile.bio.nil?) ? "My Bio" : current_user.profile.bio%>
     <label class="card-text" id="user_bio" style="width:100%;"><i><b>"</b><span onclick="edit_bio()" style="cursor: pointer"><%=bio_display%></span><b>"</b></i></label>
   </div>
-  </div>
+
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Cras justo odio</li>
     <li class="list-group-item">Dapibus ac facilisis in</li>
