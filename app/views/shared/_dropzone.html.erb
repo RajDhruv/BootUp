@@ -11,6 +11,10 @@ $("#mydropzone").dropzone({
     },
       success: function(file, response){
        $('#profile_picture').attr("src",file.dataURL);
+       $.ajax({
+       	type:"get",
+       	url:"<%=close_carousel_profile_index_path%>"
+       })
     }
 }).html("<div class='dz-default dz-message'><span><span class='deboss'>Drag and Drop File Here </span>/ <span class='dz-clickable' id='browsebtn'>Browse</span></span></div>");
 $('#mydropzone').addClass("dropzone");
