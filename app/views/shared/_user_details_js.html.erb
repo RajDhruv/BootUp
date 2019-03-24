@@ -1,0 +1,37 @@
+ <script>
+ function update_bio(bio_text)
+  {
+          bio_update_text=$('#user_bio_edit_area').val();
+          if(bio_update_text.trim()=="")
+          {
+            $('#user_bio').html("<i><b>\"</b><span onclick='edit_bio()' style='cursor: pointer'>"+bio_text+"</span><b>\"</b></i>");
+          }
+          else if(bio_update_text.trim()==bio_text.trim())
+          {
+            $('#user_bio').html("<i><b>\"</b><span onclick='edit_bio()' style='cursor: pointer'>"+bio_text+"</span><b>\"</b></i>");
+          }
+          else
+          {
+            $.ajax({
+              type:"post",
+              url:"profile/update_bio?update_text="+bio_update_text,
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+            })
+          }
+  }
+  function edit_bio()
+  {
+    bio_text=$('#user_bio').find('span').html();
+    setTimeout(function() {
+      $('#user_bio').html('<textarea id="user_bio_edit_area" style="width:100%;" onfocusout="update_bio(\''+bio_text+'\')">'+bio_text+'</textarea>');
+      $('#user_bio_edit_area').focus();
+      $('#user_bio_edit_area').keydown(function(e) {
+        if(e.keyCode == 13) {
+          update_bio(bio_text);
+        }
+      })
+    }, 200);
+  }
+  </script>
