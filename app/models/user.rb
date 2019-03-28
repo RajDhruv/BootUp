@@ -13,6 +13,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :profile , dependent: :destroy
+  has_and_belongs_to_many :clubs
   after_create :create_profile
   after_save :create_profile
 
@@ -37,11 +38,14 @@ class User < ApplicationRecord
     first_name = user_profile.first_name rescue ""
     last_name = user_profile.last_name rescue ""
     full_name = "#{first_name} #{last_name}"
-    full_name = full_name.strip.empty? ?self.email.split('@').first : full_name
+    full_name = full_name.strip.empty? ? self.email.split('@').first : full_name
   end
 
   def image_count
     self.profile.images.count - 1
   end
 
+  def is_admin_of
+    ClubAdmin.where(admin_id: self.id).includes(:club).map(&:club)
+  end
 end

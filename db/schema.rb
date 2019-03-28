@@ -10,13 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_22_165927) do
+ActiveRecord::Schema.define(version: 2019_03_28_191536) do
 
   create_table "blogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "club_admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "club_id"
+    t.bigint "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_club_admins_on_admin_id"
+    t.index ["club_id"], name: "index_club_admins_on_club_id"
+  end
+
+  create_table "clubs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "slug"
+    t.boolean "active"
+    t.integer "template_type"
+    t.integer "membership_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "owner"
+  end
+
+  create_table "clubs_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "club_id", null: false
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -54,5 +80,7 @@ ActiveRecord::Schema.define(version: 2019_03_22_165927) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "club_admins", "clubs"
+  add_foreign_key "club_admins", "users", column: "admin_id"
   add_foreign_key "profiles", "users"
 end
