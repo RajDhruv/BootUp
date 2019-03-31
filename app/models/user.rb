@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :clubs
   after_create :create_profile
   after_save :create_profile
+  has_friendship
 
   def create_profile
     unless self.profile.present?
