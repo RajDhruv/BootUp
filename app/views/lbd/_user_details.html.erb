@@ -1,3 +1,4 @@
+
 <div class="card card-user">
     <div class="image">
         <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
@@ -5,17 +6,21 @@
     <div class="content">
         <div class="author">
              <a href="#">
-            <img class="avatar border-gray" src="<%=asset_path('default_logos/default_profile.png')%>" alt="..."/>
-
-              <h4 class="title">Mike Andrew<br />
-                 <small>michael24</small>
+             <div class= "profile_pic_bg">
+                <img class="avatar border-gray" id="profile_picture" src="<%=profile_display_image(current_user)%>" alt="..." style="background-image:url('<%=asset_path('default_logos/default_profile.png')%>');background-repeat: no-repeat;"/>
+                <div class="profile_edit_overlay">
+                    <%=link_to "<h5>Edit Profile</h5>".html_safe,edit_profile_index_path,remote: :true if current_user%>
+                </div>
+            </div>
+              <h4 class="title"><span style="text-shadow: 2px 2px grey;font-weight: 900;"><%=current_user.display_name%></span><br />
+                 <small><%=current_user.email%></small>
               </h4>
             </a>
         </div>
-        <p class="description text-center"> "Lamborghini Mercy <br>
-                            Your chick she so thirsty <br>
-                            I'm in that two seat Lambo"
-        </p>
+        <%bio_display=(current_user.profile.bio.nil?) ? "My Bio" : current_user.profile.bio%>
+        <center style="border: double;border-color: goldenrod;border-radius: 10px;">
+        <span class="description text-center" id="user_bio" style="width:100%;"><i><b>"</b><span onclick="edit_bio()" style="cursor: pointer"><%=bio_display%></span><b>"</b></i></span>
+        </center>
     </div>
     <hr>
     <div class="text-center">
@@ -25,3 +30,5 @@
 
     </div>
 </div>
+
+<%=render 'shared/user_details_js'%>

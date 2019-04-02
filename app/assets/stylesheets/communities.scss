@@ -4,3 +4,69 @@
 
 @import "dropzone/dropzone";
 @import "font-awesome";
+
+
+$profile_pic_bg: rgba(0, 0, 0, 0.2);
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 85vw;
+  margin: 1rem auto;
+}
+
+
+.profile_pic_bg,
+.profile_edit_overlay {
+  text-align: center;
+}
+
+
+.profile_edit_overlay {
+  transition: .3s all;
+  border-radius: 50%;
+}
+
+.profile_pic_bg {
+  position: relative;
+  margin: .5%;
+  img {
+    width: 100%;
+  }
+  .profile_edit_overlay {
+    position: absolute;
+    top: -10px;
+    left: 29%;
+    bottom: 0;
+    width: 40%;
+    height: 113px;
+    margin-top: 5%;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    opacity: 0;
+    h5 {
+      padding-top: 40%;
+      font-family: 'Droid Serif', serif;
+      color: white;
+      text-shadow: 3px 3px black;
+    }
+    p {
+      font-family: 'Julius Sans One', sans-serif;
+    }
+  }
+  &:hover {
+    .profile_edit_overlay {
+      opacity: 1;
+    }
+    img {
+      -webkit-filter: blur(2px);
+      filter: blur(2px);
+    }
+  }
+}
