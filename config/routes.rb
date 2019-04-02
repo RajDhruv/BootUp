@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'communities/index'
 	resources :profile, except: [:new, :create, :edit, :update, :destroy, :index, :show] do
 		collection do
 		  patch 'update'

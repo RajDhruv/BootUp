@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BootUp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'lbd/bootstrap.min.css','lbd/demo','noty','lbd/animate.min.css','lbd/light-bootstrap-dashboard.css?v=1.4.0','lbd/pe-icon-7-stroke.css'%>
+    <%= stylesheet_link_tag    'communities', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'communities', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'noty.min.js','lbd/bootstrap.min.js','lbd/bootstrap-notify.js','lbd/bootstrap-select.js','lbd/chartist.min.js','lbd/light-bootstrap-dashboard.js'%>
+
+  </head>
+  <body>
+  	
+
+
+
+<div class="wrapper">
+	<%=render 'lbd/sidebar.html.erb'%>
+
+    <div class="main-panel">
+    <%=render 'lbd/nav.html.erb'%>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card" id="main-timeline">
+                        	<%=yield%>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    	<%=render 'lbd/user_details.html.erb'%>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+       <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Company
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Portfolio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                               Blog
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="copyright pull-right">
+                    <%=Platipus::Renderer.copyright 'Faraz Noor & Dhruv Raj', 'All rights reserved'%>
+                </p>
+            </div>
+        </footer> 
+
+    </div>
+</div>
+
+
+
+  </body>
+  </html>

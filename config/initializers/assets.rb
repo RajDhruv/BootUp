@@ -2,7 +2,7 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
-Rails.application.config.assets.precompile += %w( noty.css noty.min.js)
+Rails.application.config.assets.precompile += %w( communities.coffee lbd/bootstrap.min.js lbd/bootstrap.min.css lbd/demo.css communities.scss noty.css noty.min.js lbd/animate.min.css lbd/light-bootstrap-dashboard.css lbd/pe-icon-7-stroke.css lbd/bootstrap-notify.js lbd/bootstrap-select.js lbd/chartist.min.js lbd/light-bootstrap-dashboard.js )
 
 # Add additional assets to the asset load path.
 # Rails.application.config.assets.paths << Emoji.images_path
