@@ -1,6 +1,7 @@
 <%case from%>
 <%when :edit%>
-$("#playground").html("<%=j render partial:'edit_form'%>");
+// $("#playground").html("<%=j render partial:'edit_form'%>");
+$("#main-timeline").html("<%=j render partial:'edit_form'%>");
 $("#edit_profile_message").click();
 <%when :update_bio%>
 $('#user_bio').html("<i><b>\"</b><span onclick='edit_bio()' style='cursor: pointer'><%=current_user.profile.bio%></span><b>\"</b></i>");

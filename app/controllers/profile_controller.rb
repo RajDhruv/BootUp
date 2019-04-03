@@ -2,6 +2,7 @@ class ProfileController < ApplicationController
   def update
   	@profile=current_user.profile
   	@profile.update(profile_params)
+    session[:noty_type]='success'
     render partial:"router.js.erb",locals:{from: :update}
   end
 
