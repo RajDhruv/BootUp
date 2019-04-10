@@ -1,6 +1,6 @@
 
 <div class="card card-user" style="position: fixed;width:24%">
-    <div class="image">
+    <div class="card-image">
         <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
     </div>
     <div class="content">
@@ -9,7 +9,7 @@
              <div class= "profile_pic_bg">
                 <img class="avatar border-gray" id="profile_picture" src="<%=profile_display_image(current_user)%>" alt="..." style="background-image:url('<%=asset_path('default_logos/default_profile.png')%>');background-repeat: no-repeat;"/>
                 <div class="profile_edit_overlay">
-                    <%=link_to "<h5>Edit Profile</h5>".html_safe,edit_profile_index_path,remote: :true if current_user%>
+                    <%=link_to "<h5>Edit Profile</h5>".html_safe,edit_profile_index_path,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Edit Profile',text_color: 'gold').html_safe,remote: :true if current_user%>
                 </div>
             </div>
               <h4 class="title"><span style="font-weight: 900;"><%=current_user.display_name%></span><br />

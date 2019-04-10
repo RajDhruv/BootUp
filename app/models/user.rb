@@ -43,7 +43,7 @@ class User < ApplicationRecord
   end
 
   def image_count
-    self.profile.images.count - 1
+    self.profile.images.count
   end
 
   def is_admin_of

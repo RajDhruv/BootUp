@@ -17,6 +17,7 @@ gem "font-awesome-rails"
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 gem 'platipus', '~> 0.1.0'
+gem 'custom_loader', '~> 0.2.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

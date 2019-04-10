@@ -28,7 +28,10 @@ $('#mydropzone').addClass("dropzone");
 	 	<img src="<%=profile_display_image(current_user)%>" height="59" width="59">
 	 </div>
 		<div class="logowrpLefttext">
-			<%=link_to "+#{current_user.image_count}",profile_carousel_profile_index_path,remote:true%>		
+			<%image_count=current_user.image_count%>
+			<%if image_count>1%>
+				<%=link_to "+#{image_count-1}",profile_carousel_profile_index_path,remote:true%>
+			<%end%>		
 		</div>
 		<div class="Logodivider">OR</div>
 		

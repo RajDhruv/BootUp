@@ -13,68 +13,84 @@
   <body>
   	
 
+<%if current_user%>
+    
+    <div class="wrapper">
+    	<%=render 'lbd/sidebar.html.erb'%>
 
-
-<div class="wrapper">
-	<%=render 'lbd/sidebar.html.erb'%>
-
-    <div class="main-panel">
-    <%=render 'lbd/nav.html.erb'%>
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="card" id="main-timeline">
-                            <%if notice%>
-                                <%=render partial:'shared/noty',locals:{message:notice,type:(session[:noty_type] rescue 'success')}%>
-                            <%end%>
-                        	<%=yield%>
+        <div class="main-panel">
+        <%=render 'lbd/nav.html.erb'%>
+            <div class="content">
+                <div class="container-fluid">
+                    <%unless current_user.profile.present? && current_user.profile.is_complete?%>
+                      <center>
+                        <div class="alert alert-dismissible alert-info" style="position: absolute;z-index: 99999;width: 80%;">
+                          <button type="button" class="close" data-dismiss="alert" id="edit_profile_message">&times;</button>
+                          <strong>Heads up!</strong> Your Profile Seems To Be Incomplete. <%=link_to "Click Here",edit_profile_index_path,remote: :true%> To Complete.
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                    	<%=render 'lbd/user_details.html.erb'%>
-                    </div>
+                      </center>
+                    <%end%>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card" id="main-timeline">
+                                <%if notice%>
+                                    <%=render partial:'shared/noty',locals:{message:notice,type:(session[:noty_type] rescue 'success')}%>
+                                <%end%>
+                            	<%=yield%>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        	<%=render 'lbd/user_details.html.erb'%>
+                        </div>
 
+                    </div>
                 </div>
             </div>
+
+
+           <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Company
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Portfolio
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                   Blog
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <p class="copyright pull-right">
+                        <%=Platipus::Renderer.copyright 'Faraz Noor & Dhruv Raj', 'All rights reserved'%>
+                    </p>
+                </div>
+            </footer> 
+
         </div>
-
-
-       <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Company
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                               Blog
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <p class="copyright pull-right">
-                    <%=Platipus::Renderer.copyright 'Faraz Noor & Dhruv Raj', 'All rights reserved'%>
-                </p>
-            </div>
-        </footer> 
-
     </div>
-</div>
-
+<%else%>
+        <div class="container">
+          <center style="padding-top: 3.5%">
+            <div class="jumbotron" style="width: 45%;height: 82vh;overflow-y: auto;">
+              <%= yield %>    
+            </div>
+          </center>
+        </div>
+<%end%>
 
 
   </body>
