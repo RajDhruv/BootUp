@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  layout "new_layout"
+  layout "lbd4_application"
   def index
   end
 end

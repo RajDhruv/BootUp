@@ -7,4 +7,4 @@
 #=require jquery3
 #=require dropzone
 #=require popper
-#= require bootstrap
+#=require bootstrap

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BootUp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'lbd4/demo','noty','lbd4/light-bootstrap-dashboard.css?v=2.0.1'%>
+    <%= stylesheet_link_tag    'communities', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'communities', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'noty.min.js','lbd4/plugins/bootstrap-notify.js','lbd4/plugins/bootstrap-switch.js','lbd4/plugins/chartist.min.js','lbd4/light-bootstrap-dashboard.js','lbd4/plugins/jquery.sharrre.js','lbd4/plugins/bootstrap-notify.js','lbd4/demo.js'%>
+
+  </head>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <style type="text/css">
+      .Logodivider{
+        width: unset;
+      }
+      #upload_area{
+        width: 100%;
+      }
+    </style>
+    <div class="wrapper">
+        <%=render 'lbd4/sidebar'%>
+        <div class="main-panel">
+            <!-- fixed plugin  -->
+            <%=render 'lbd4/preferences'%>
+            <!-- Navbar -->
+            <%=render 'lbd4/nav'%>
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title" id="view_id"></h4>
+                                </div>
+                                <div class="card-body" id="main-timeline">
+                                    <%=yield%>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-user">
+                                <%=render 'lbd4/user_details'%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%=render 'lbd4/footer'%>
+        </div>
+    </div>
+</html>

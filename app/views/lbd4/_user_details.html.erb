@@ -1,0 +1,40 @@
+<div class="card-image">
+    <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
+</div>
+<div class="card-body">
+    <div class="author">
+        <a href="#">
+            <div class= "profile_pic_bg">
+                <img id="profile_picture" class="avatar border-gray" src="<%=profile_display_image(current_user)%>" alt="..." style="background-image:url('<%=asset_path('default_logos/default_profile.png')%>');background-repeat: no-repeat;"/>
+                    <div class="profile_edit_overlay">
+                        <%=link_to ("<h5><strong><i class='nc-icon nc-ruler-pencil'></i></strong></h5>").html_safe,edit_profile_index_path,remote: :true if current_user%>
+                    </div>
+            </div>
+            <div class="profile_edit_overlay">
+                <%=link_to ("<h5>"+current_user.display_name+"</h5>").html_safe,edit_profile_index_path,remote: :true if current_user%>
+            </div>
+        </a>
+        <p class="description">
+            <%=current_user.email%>
+        </p>
+    </div>
+    <p class="description text-center">
+        <%bio_display=(current_user.profile.bio.nil?) ? "My Bio" : current_user.profile.bio%>
+        <center>
+        <span class="description text-center" id="user_bio" style="width:100%;"><i><b>"</b><span onclick="edit_bio()" style="cursor: pointer"><%=bio_display%></span><b>"</b></i></span>
+        </center>
+    </p>
+</div>
+<hr>
+<div class="button-container mr-auto ml-auto">
+    <button href="#" class="btn btn-simple btn-link btn-icon">
+        <i class="fa fa-facebook-square"></i>
+    </button>
+    <button href="#" class="btn btn-simple btn-link btn-icon">
+        <i class="fa fa-twitter"></i>
+    </button>
+    <button href="#" class="btn btn-simple btn-link btn-icon">
+        <i class="fa fa-google-plus-square"></i>
+    </button>
+</div>
+<%=render 'shared/user_details_js'%>
