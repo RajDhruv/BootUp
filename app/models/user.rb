@@ -49,4 +49,5 @@ class User < ApplicationRecord
   def is_admin_of
     ClubAdmin.where(admin_id: self.id).includes(:club).map(&:club)
   end
+  #TODO make a preference model that will store the persistence
 end
