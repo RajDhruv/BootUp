@@ -1,3 +1,13 @@
+<script type="text/javascript">
+    function change_panel_color(color)
+    {
+        domain_name=window.location.origin;
+        $.ajax({
+            type:"get",
+            url: domain_name+"/preferences/change_panel_color?color="+color
+        })
+    }
+</script>
 <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
@@ -19,13 +29,16 @@
                 <a href="javascript:void(0)" class="switch-trigger background-color">
                     <p>Filters</p>
                     <div class="pull-right">
-                        <span class="badge filter badge-black" data-color="black">&nbsp;</span>
-                        <span class="badge filter badge-azure" data-color="azure">&nbsp;</span>
-                        <span class="badge filter badge-green" data-color="green">&nbsp;</span>
-                        <span class="badge filter badge-orange" data-color="orange">&nbsp;</span>
-                        <span class="badge filter badge-red" data-color="red">&nbsp;</span>
-                        <span class="badge filter badge-purple active" data-color="purple">&nbsp;</span>
+                        <span class="badge filter badge-black" data-color="black" onclick="change_panel_color($(this).attr('data-color'));">&nbsp;</span>
+                        <span class="badge filter badge-azure" data-color="azure" onclick="change_panel_color($(this).attr('data-color'));">&nbsp;</span>
+                        <span class="badge filter badge-green" data-color="green" onclick="change_panel_color($(this).attr('data-color'));">&nbsp;</span>
+                        <span class="badge filter badge-orange" data-color="orange" onclick="change_panel_color($(this).attr('data-color'));">&nbsp;</span>
+                        <span class="badge filter badge-red" data-color="red" onclick="change_panel_color($(this).attr('data-color'));">&nbsp;</span>
+                        <span class="badge filter badge-purple" data-color="purple" onclick="change_panel_color($(this).attr('data-color'));">&nbsp;</span>
                     </div>
+                    <script type="text/javascript">
+                        $('.badge-<%=current_user.preference.panel_color%>').addClass("active");
+                    </script>
                     <div class="clearfix"></div>
                 </a>
             </li>

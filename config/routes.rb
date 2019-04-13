@@ -13,6 +13,13 @@ Rails.application.routes.draw do
 		end
 	end
 
+	resources :preferences do
+		collection do
+		  get 'change_panel_color'
+		  get 'change_panel_image_visibility'
+		end
+	end
+
   devise_for :users
   resources :blogs
   root "blogs#index"

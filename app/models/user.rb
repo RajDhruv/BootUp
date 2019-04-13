@@ -13,14 +13,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :profile , dependent: :destroy
+  has_one :preference , dependent: :destroy
   has_and_belongs_to_many :clubs
-  after_create :create_profile
-  after_save :create_profile
+  after_create :create_profile, :create_preference
+  after_save :create_profile, :create_preference
   has_friendship
 
   def create_profile
     unless self.profile.present?
       Profile.create(user:self)
+    end
+  end
+
+  def create_preference
+    unless self.preference.present?
+      Preference.create(user:self)
     end
   end
 
