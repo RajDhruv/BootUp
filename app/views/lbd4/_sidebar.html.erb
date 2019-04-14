@@ -1,4 +1,7 @@
-<div class="sidebar" data-image="<%=profile_display_image(current_user)%>" data-color="<%=current_user.preference.panel_color%>">
+<%user_prefs=current_user.preference
+image_name=user_prefs.image_selected
+image_name||=""%>
+<div class="sidebar" data-image="<%=(!user_prefs.display_panel_image.nil? and user_prefs.display_panel_image and !image_name.empty?) ? image_url("sidebars/#{image_name}") : ''%>" data-color="<%=user_prefs.panel_color%>">
     <!--
 Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 

@@ -1,0 +1,6 @@
+<%user_prefs=current_user.preference%>
+<%if user_prefs.display_panel_image%>
+<%image_name=user_prefs.image_selected
+image_name||=""%>
+$('.sidebar-background').css('background-image','url(<%=image_url("sidebars/#{image_name}")%>)').show();
+<%end%>

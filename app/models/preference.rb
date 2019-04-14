@@ -13,4 +13,16 @@ class Preference < ApplicationRecord
   	self.panel_color=0
   	self.display_panel_image = false
   end
+  
+  def toggle_background_image
+  	if self.display_panel_image.nil?
+  		self.display_panel_image = false
+  	end
+  	self.update_attribute("display_panel_image",!(self.display_panel_image))
+  end
+
+  def set_background_image(asset_name)
+  	self.update_attribute("image_selected",asset_name)
+  end
+
 end

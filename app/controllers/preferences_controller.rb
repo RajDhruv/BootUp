@@ -4,6 +4,14 @@ class PreferencesController < ApplicationController
   	render :nothing=>true
   end
 
-  def change_panel_image_visibility
+  def toggle_background_image
+  	current_user.preference.toggle_background_image
+  	render partial: 'toggle_background_image.js.erb'
+  end
+
+  def set_background_image
+  	image_name=params[:asset_name]
+  	current_user.preference.set_background_image(image_name)
+  	render :nothing=>true
   end
 end

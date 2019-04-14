@@ -16,7 +16,8 @@ Rails.application.routes.draw do
 	resources :preferences do
 		collection do
 		  get 'change_panel_color'
-		  get 'change_panel_image_visibility'
+		  get 'toggle_background_image'
+		  get 'set_background_image'
 		end
 	end
 

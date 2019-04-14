@@ -7,7 +7,24 @@
             url: domain_name+"/preferences/change_panel_color?color="+color
         })
     }
+    function toggle_background_image()
+    {
+        domain_name=window.location.origin;
+        $.ajax({
+            type:"get",
+            url: domain_name+"/preferences/toggle_background_image"
+        })
+    }
+    function set_background_image(asset_name)
+    {
+        domain_name=window.location.origin;
+        $.ajax({
+            type:"get",
+            url: domain_name+"/preferences/set_background_image?asset_name="+asset_name
+        })
+    }
 </script>
+<%user_prefs=current_user.preference%>
 <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
@@ -19,7 +36,7 @@
                 <a href="javascript:void(0)" class="switch-trigger">
                     <p>Background Image</p>
                     <label class="switch">
-                        <input type="checkbox" data-toggle="switch" checked="" data-on-color="primary" data-off-color="primary">
+                        <input type="checkbox" data-toggle="switch" <%="checked" if !user_prefs.display_panel_image.nil? and user_prefs.display_panel_image%> data-on-color="primary" data-off-color="primary" onclick="toggle_background_image();">
                         <span class="toggle"></span>
                     </label>
                     <div class="clearfix"></div>
@@ -37,39 +54,41 @@
                         <span class="badge filter badge-purple" data-color="purple" onclick="change_panel_color($(this).attr('data-color'));">&nbsp;</span>
                     </div>
                     <script type="text/javascript">
-                        $('.badge-<%=current_user.preference.panel_color%>').addClass("active");
+                        $('.badge-<%=user_prefs.panel_color%>').addClass("active");
                     </script>
                     <div class="clearfix"></div>
                 </a>
             </li>
             <li class="header-title">Sidebar Images</li>
             <!-- here we will show them the list of images as cover pics uploaded by the user -->
-            <li class="active">
+            <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="<%=image_url('sidebars/sidebar-1.jpg')%>" alt="" />
+                    <img src="<%=image_url('sidebars/sidebar-1.jpg')%>" id="sidebar-1" alt="" onclick="set_background_image('sidebar-1.jpg');" />
                 </a>
             </li>
             <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="<%=image_url('sidebars/sidebar-3.jpg')%>" alt="" />
+                    <img src="<%=image_url('sidebars/sidebar-2.jpg')%>" id="sidebar-2" alt="" onclick="set_background_image('sidebar-2.jpg');" />
                 </a>
             </li>
             <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="<%=image_url('sidebars/sidebar-3.jpg')%>" alt="" />
+                    <img src="<%=image_url('sidebars/sidebar-3.jpg')%>" id="sidebar-3" alt="" onclick="set_background_image('sidebar-3.jpg');" />
                 </a>
             </li>
             <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="<%=image_url('sidebars/sidebar-4.jpg')%>" alt="" />
+                    <img src="<%=image_url('sidebars/sidebar-4.jpg')%>" id="sidebar-4" alt="" onclick="set_background_image('sidebar-4.jpg');" />
                 </a>
             </li>
             <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="<%=image_url('sidebars/sidebar-5.jpg')%>" alt="" />
+                    <img src="<%=image_url('sidebars/sidebar-5.jpg')%>" id="sidebar-5" alt="" onclick="set_background_image('sidebar-5.jpg');" />
                 </a>
             </li>
-            
+            <script type="text/javascript">
+                $("#<%=user_prefs.image_selected.split('.').first%>").parent().parent().addClass('active');
+            </script>
         </ul>
     </div>
 </div>
