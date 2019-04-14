@@ -47,15 +47,17 @@
                                     <h4 class="card-title" id="view_id"></h4>
                                 </div>
                                 <div class="card-body" id="main-timeline">
-                                    <%if notice%>
-                                        <%=render partial:'shared/noty',locals:{message:notice,type:(session[:noty_type] rescue 'success')}%>
-                                    <%end%>
+                                    <div id="noty">
+                                        <%if notice%>
+                                            <%=render partial:'shared/noty',locals:{message:notice,type:(session[:noty_type] rescue 'success')}%>
+                                        <%end%>
+                                    </div>
                                     <%=yield%>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card card-user">
+                            <div class="card card-user" style="position:fixed;">
                                 <%=render 'lbd4/user_details'%>
                             </div>
                         </div>

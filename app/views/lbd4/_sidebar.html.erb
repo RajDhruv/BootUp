@@ -24,7 +24,7 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
             <li class="nav-item">
-            <%=link_to '<i class="nc-icon nc-vector"></i><p>Communities</p>'.html_safe,communities_path,class:"nav-link",id:"communities_nav",remote: true%>
+            <%=link_to '<i class="nc-icon nc-vector"></i><p>Communities</p>'.html_safe,communities_path,class:"nav-link",id:"communities_nav",remote: true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Edit Profile',text_color: 'gold').html_safe%>
 
 
             </li>

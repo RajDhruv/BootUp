@@ -5,6 +5,9 @@
 	$('#communities_nav').parent().addClass("active");
 	$("#communities_nav").addClass("active");
 	$("#main-timeline").html("<%=j render partial:'index'%>");
+	<%if notice%>
+        $("#noty").html("<%=j render partial:'shared/noty',locals:{message:notice,type:(session[:noty_type] rescue 'success')}%>");
+    <%end%>
 <%when :new%>
 	$("#view_id").html("Create Club");
 	$("#main-timeline").html("<%=j render partial:'form',locals:{community:@community,action: :create}%>");
