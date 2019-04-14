@@ -1,0 +1,24 @@
+<%=form_for community,url:{action: action} do |f|%>
+	<div class="form-group">
+		<%=f.label :name%>
+		<%=f.text_field :name,class:"form-control"%>
+	</div>
+	<div class="form-group">
+		<%=f.label :description%>
+		<%=f.text_area :description,class:"form-control"%>
+	</div>	
+	<div class="form-group">	
+		<%=f.label :active,class:"switch"%>
+		<%=f.check_box :active%>
+	</div>
+	<div class="form-group">	
+		<%=f.label :membership_type%>
+		<%=f.radio_button :membership_type,"public_club"%>
+		<%=f.label :membership_type,"Public"%>
+		<%=f.radio_button :membership_type,"private_club"%>
+		<%=f.label :membership_type,"Private"%>
+		<%=f.radio_button :membership_type,"invite_only"%>
+		<%=f.label :membership_type,"Invite Only"%>
+	</div>		
+		<%=f.submit "Create Club",class:"btn btn-outline-success"%>
+<%end%>

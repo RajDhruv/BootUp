@@ -32,6 +32,14 @@
             <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
+                    <%unless current_user.profile.present? && current_user.profile.is_complete?%>
+                        <center>
+                          <div class="alert alert-dismissible alert-info" style="position: absolute;z-index: 99999;width: 80%;">
+                            <button type="button" class="close" data-dismiss="alert" id="edit_profile_message">&times;</button>
+                            <strong>Heads up!</strong> Your Profile Seems To Be Incomplete. <%=link_to "Click Here",edit_profile_index_path,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/blue_diameter.gif'),content: 'Edit Profile',text_color: 'gold').html_safe,remote: :true%> To Complete.
+                          </div>
+                        </center>
+                      <%end%>
                     <div class="row">
                         <div class="col-md-8">
                             <div class="card">
@@ -39,6 +47,9 @@
                                     <h4 class="card-title" id="view_id"></h4>
                                 </div>
                                 <div class="card-body" id="main-timeline">
+                                    <%if notice%>
+                                        <%=render partial:'shared/noty',locals:{message:notice,type:(session[:noty_type] rescue 'success')}%>
+                                    <%end%>
                                     <%=yield%>
                                 </div>
                             </div>

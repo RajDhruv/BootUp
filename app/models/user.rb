@@ -13,7 +13,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :profile , dependent: :destroy
-  has_and_belongs_to_many :clubs
+  has_and_belongs_to_many :clubs,-> { distinct } do
+    def << (value)
+      super value rescue ActiveRecord::RecordNotUnique
+    end
+  end
   after_create :create_profile
   after_save :create_profile
   has_friendship

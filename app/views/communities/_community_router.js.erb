@@ -1,0 +1,11 @@
+<%case from%>
+<%when :index%>
+	$("#view_id").html("Choose Club");
+	//$('.sidebar-wrapper').find('.master_nav').find('.active').removeClass('active');
+	$('#communities_nav').parent().addClass("active");
+	$("#communities_nav").addClass("active");
+	$("#main-timeline").html("<%=j render partial:'index'%>");
+<%when :new%>
+	$("#view_id").html("Create Club");
+	$("#main-timeline").html("<%=j render partial:'form',locals:{community:@community,action: :create}%>");
+<%end%>

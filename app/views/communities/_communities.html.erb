@@ -1,0 +1,18 @@
+<hr>
+<%clubs.each do |club|%>
+	<%=club.name%>
+		<%unless club.owner==current_user.id%>
+			<%unless club.include? current_user%>
+				<%if club.private_club?%>
+					ask to join club
+				<%else%>
+					join now
+				<%end%>
+			<%else%>
+				open club
+			<%end%>
+		<%else%>
+			manage club
+		<%end%>
+	<hr>
+<%end%>
