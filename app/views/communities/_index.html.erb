@@ -1,31 +1,21 @@
-<%=link_to "New Community",new_community_path,class:"btn btn-success",remote:true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Edit Profile',text_color: 'gold').html_safe%>
+<%=link_to "New Club",new_community_path,class:"btn btn-success",remote:true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Loading...',text_color: 'gold').html_safe%>
 
-<ul class="nav nav-tabs" id="myTab" role="tablist">
+<ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" id="my-community-tab" data-toggle="tab" href="#my-community" role="tab" aria-controls="my-community" aria-selected="true">My Clubs</a>
+    <%=link_to "Membership",communities_path,class:"nav-link",id:"index",remote:true%>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="public-community-tab" data-toggle="tab" href="#public-community" role="tab" aria-controls="public-community" aria-selected="false">Public Clubs</a>
+    <%=link_to "Public Clubs",public_communities_path,class:"nav-link",id:"public",remote:true%>
+    
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="private-community-tab" data-toggle="tab" href="#private-community" role="tab" aria-controls="private-community" aria-selected="false">Private Clubs</a>
+   <%=link_to "Private Clubs",private_communities_path,class:"nav-link",id:"private",remote:true%>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="owned-community-tab" data-toggle="tab" href="#owned-community" role="tab" aria-controls="owned-community" aria-selected="false">Owned Clubs</a>
+    <%=link_to "My Clubs",owned_communities_path,class:"nav-link",id:"owned",remote:true%>
   </li>
 </ul>
-
+    
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="my-community" role="tabpanel" aria-labelledby="my-community-tab">
     <%=render 'communities',clubs:@my_clubs%>
-  </div>
-  <div class="tab-pane fade" id="public-community" role="tabpanel" aria-labelledby="public-community-tab">
-    <%=render 'communities',clubs:@all_public_communities%>
-  </div>
-  <div class="tab-pane fade" id="private-community" role="tabpanel" aria-labelledby="private-community-tab">
-    <%=render 'communities',clubs:@all_private_communities%>
-  </div>
-  <div class="tab-pane fade" id="owned-community" role="tabpanel" aria-labelledby="owned-community-tab">
-    <%=render 'communities',clubs:@owned_clubs%>
-  </div>
 </div>

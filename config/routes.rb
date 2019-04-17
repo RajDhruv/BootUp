@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-resources :communities
+resources :communities do
+	collection do
+		get 'public',to:'communities#public'
+		get 'private',to:'communities#private_club'
+		get 'owned',to:'communities#owned_club'
+	end
+end
   
 resources :profile, except: [:new, :create, :edit, :update, :destroy, :index, :show] do
 	collection do

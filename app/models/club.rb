@@ -11,7 +11,9 @@ class Club < ApplicationRecord
 	# def set_owner
 	# 	self.owner=current_user.id
 	# end
-
+	def owner_is?
+		User.find_by_id(self.owner)
+	end
 	def has_admin?(user)
 		self.admins.include? user
 	end

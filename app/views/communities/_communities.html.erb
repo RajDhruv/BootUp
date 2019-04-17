@@ -9,10 +9,11 @@
 					join now
 				<%end%>
 			<%else%>
-				open club
+				<%=link_to "Open",community_path(club.id),remote:true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Opening '+club.name,text_color: 'gold').html_safe%>
 			<%end%>
 		<%else%>
 			manage club
 		<%end%>
 	<hr>
 <%end%>
+<%= paginate clubs, :remote => true %>

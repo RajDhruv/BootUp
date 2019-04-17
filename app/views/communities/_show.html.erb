@@ -1,0 +1,40 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="members-tab" data-toggle="tab" href="#members" role="tab" aria-controls="members" aria-selected="false">Members</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="bosses-tab" data-toggle="tab" href="#bosses" role="tab" aria-controls="bosses" aria-selected="false">Boss</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <!-- Posts appear here -->
+
+  </div>
+  <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">
+    <%@club.users.each do |member|%>
+    <%=render '/shared/user',user:member%>
+    <%end%>
+  </div>
+
+  <div class="tab-pane fade" id="bosses" role="tabpanel" aria-labelledby="bosses-tab">
+     <!-- admin details appear here -->
+    <h5>Owner</h5>
+    <%=render '/shared/user',user:@club.owner_is?%>
+    <hr>
+    <h5>Admins</h5>
+    
+      <%@club.club_admins.each do |club_admin|%>
+      <%admin=club_admin.admin%>
+        
+          <%=render '/shared/user',user:admin%>
+        
+      <%end%>
+      
+    
+  </div>
+
+</div>

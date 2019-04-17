@@ -1,14 +1,35 @@
+<%at_action||=nil%>
 <%case from%>
+<%when :show%>
+	$("#view_id").html("<%=@club.name%>");
+	$("#main-timeline").html("<%=j render partial:'show'%>");
+<%when :owned_club%>
+	$('a').removeClass("active");
+	$("#owned").addClass("active");
+	$("#myTabContent").html("<%=j render 'communities',clubs:@owned_clubs%>");
+<%when :private_club%>
+	$('a').removeClass("active");
+	$("#private").addClass("active");
+	$("#myTabContent").html("<%=j render 'communities',clubs:@all_private_communities%>");
+<%when :public%>
+	$('a').removeClass("active");
+	$("#public").addClass("active");
+	$("#myTabContent").html("<%=j render 'communities',clubs:@all_public_communities%>");
 <%when :index%>
 	$("#view_id").html("Choose Club");
-	//$('.sidebar-wrapper').find('.master_nav').find('.active').removeClass('active');
 	$('#communities_nav').parent().addClass("active");
 	$("#communities_nav").addClass("active");
 	$("#main-timeline").html("<%=j render partial:'index'%>");
-	<%if notice%>
-        $("#noty").html("<%=j render partial:'shared/noty',locals:{message:notice,type:(session[:noty_type] rescue 'success')}%>");
-    <%end%>
+	$("#index").addClass("active");
 <%when :new%>
 	$("#view_id").html("Create Club");
 	$("#main-timeline").html("<%=j render partial:'form',locals:{community:@community,action: :create}%>");
+<%end%>
+<%if notice%>
+	new Noty({
+		timeout: 1000,
+		type: '<%=type%>',
+		layout: 'topCenter',
+		text: '<%=notice%>'
+	}).show();
 <%end%>
