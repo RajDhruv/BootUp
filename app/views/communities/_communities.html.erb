@@ -6,13 +6,18 @@
 				<%if club.private_club?%>
 					ask to join club
 				<%else%>
-					join now
+					<%=link_to "Join Now",join_community_path(club.id),method: :post,remote:true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Joining '+club.name,text_color: 'gold').html_safe%>
 				<%end%>
 			<%else%>
 				<%=link_to "Open",community_path(club.id),remote:true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Opening '+club.name,text_color: 'gold').html_safe%>
 			<%end%>
 		<%else%>
-			manage club
+			<%=link_to "Open",community_path(club.id),remote:true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Opening '+club.name,text_color: 'gold').html_safe%>
+			|
+			<%=link_to "Edit Club",edit_community_path(club.id),remote: true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Opening '+club.name,text_color: 'gold').html_safe
+			%>
+			|
+			<%=link_to "Destroy",community_path(club.id),method: :delete, data: { confirm: 'Are you sure?' },remote:true%>
 		<%end%>
 	<hr>
 <%end%>

@@ -4,7 +4,7 @@ class Club < ApplicationRecord
 	    super value rescue ActiveRecord::RecordNotUnique
 	  end
 	end
-	has_many :club_admins
+	has_many :club_admins,dependent: :destroy
 	has_many :admins, through: :club_admins, class_name: "User"
 	enum membership_type:{ public_club:0, private_club:1, invite_only:2 }
 	# before_create :set_owner

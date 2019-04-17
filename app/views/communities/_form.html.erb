@@ -20,7 +20,7 @@
 		<%=f.radio_button :membership_type,"invite_only"%>
 		<%=f.label :membership_type,"Invite Only"%>
 	</div>		
-		<%=f.submit "Create Club",class:"btn btn-outline-success",onclick:"return validate();"%>
+		<%=f.submit action==:create ? "Create" : "Update" ,class:"btn btn-outline-success",onclick:"return validate();"%>
 <%end%>
 
 <script type="text/javascript">

@@ -2,6 +2,9 @@
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
+    <%=link_to "My Clubs",owned_communities_path,class:"nav-link",id:"owned",remote:true%>
+  </li>
+  <li class="nav-item">
     <%=link_to "Membership",communities_path,class:"nav-link",id:"index",remote:true%>
   </li>
   <li class="nav-item">
@@ -11,9 +14,7 @@
   <li class="nav-item">
    <%=link_to "Private Clubs",private_communities_path,class:"nav-link",id:"private",remote:true%>
   </li>
-  <li class="nav-item">
-    <%=link_to "My Clubs",owned_communities_path,class:"nav-link",id:"owned",remote:true%>
-  </li>
+  
 </ul>
     
 <div class="tab-content" id="myTabContent">

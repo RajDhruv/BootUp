@@ -6,6 +6,9 @@ resources :communities do
 		get 'private',to:'communities#private_club'
 		get 'owned',to:'communities#owned_club'
 	end
+	member do 
+		post 'join',to:'communities#join_public'
+	end
 end
   
 resources :profile, except: [:new, :create, :edit, :update, :destroy, :index, :show] do
