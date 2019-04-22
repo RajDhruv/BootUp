@@ -3,10 +3,17 @@
 	<%=club.name%>
 		<%unless club.owner==current_user.id%>
 			<%unless club.include? current_user%>
+				
 				<%if club.private_club?%>
-					ask to join club
+					<span id="invitation_<%=club.id%>">
+					<%unless club.invitation_exist?(current_user)%>
+						<%=link_to "Request Membership",requested_community_path(club.id),method: :post,remote:true%>
+					<%else%>
+						<label style='color:orange;'>Request Sent</label>
+					<%end%>
+					</span>
 				<%else%>
-					<%=link_to "Join Now",join_community_path(club.id),method: :post,remote:true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Joining '+club.name,text_color: 'gold').html_safe%>
+					<%=link_to "Join Now",join_community_path(club.id),method: :post,remote:true%>
 				<%end%>
 			<%else%>
 				<%=link_to "Open",community_path(club.id),remote:true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Opening '+club.name,text_color: 'gold').html_safe%>

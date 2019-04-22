@@ -1,6 +1,7 @@
 class CommunitiesController < ApplicationController
   layout "lbd4_application"
-  before_action :set_club, only: [:show,:join_public,:edit,:update,:destroy]
+  before_action :set_club, only: [:show,:join_public,:edit,:update,:destroy,:ask_private]
+  before_action :get_notifications
   def index
   	@my_clubs=current_user.clubs.page(params[:page]).per(10)
   	render partial:"community_router.js.erb",locals:{from: :index}
@@ -58,6 +59,21 @@ class CommunitiesController < ApplicationController
   	render partial:"community_router.js.erb",locals:{from: :join_public,notice:"Joined Successfully"}
   end
 
+  def ask_private
+  	@invite=Invitation.create(club:@club,requester_id:current_user.id,status: 0,invite_type:0)
+  	@club.admins.each do |admin|
+  		@notification=Notification.new(notify:admin,content:"#{current_user.display_name} has asked to join club #{@club.name}")
+  		@notification.invitation_id=@invite.id
+  		@notification.save
+  	end
+  	#TODO make this code efficient
+  	@owner=User.find_by_id(@club.owner)
+  	@notification=Notification.new(notify:@owner,content:"#{current_user.display_name} has asked to join club #{@club.name}")
+  	@notification.invitation_id=@invite.id
+  	@notification.save
+  	render partial:"community_router.js.erb",locals:{from: :ask_private,notice:"Invitation Sent"}
+  end
+
   private
 
   def club_params
@@ -66,5 +82,9 @@ class CommunitiesController < ApplicationController
 
   def set_club
   	@club=Club.find_by_id(params[:id])
+  end
+
+  def get_notifications
+  	@notifications=current_user.notifications
   end
 end

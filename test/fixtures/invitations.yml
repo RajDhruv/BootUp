@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  club: one
+  approver: 1
+  requester: 1
+
+two:
+  club: two
+  approver: 1
+  requester: 1

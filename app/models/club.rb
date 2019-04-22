@@ -4,6 +4,7 @@ class Club < ApplicationRecord
 	    super value rescue ActiveRecord::RecordNotUnique
 	  end
 	end
+	has_many :invitations
 	has_many :club_admins,dependent: :destroy
 	has_many :admins, through: :club_admins, class_name: "User"
 	enum membership_type:{ public_club:0, private_club:1, invite_only:2 }
@@ -20,6 +21,10 @@ class Club < ApplicationRecord
 
 	def include?(user)
 		self.users.include? user
+	end
+
+	def invitation_exist?(user)
+		return self.invitations.where(requester_id:user.id,status:0).any?
 	end
 
 end

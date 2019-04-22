@@ -8,8 +8,12 @@ resources :communities do
 	end
 	member do 
 		post 'join',to:'communities#join_public'
+		post 'requested',to:'communities#ask_private'
+		post 'approve_invite',to:'communities#approve_invite'
 	end
 end
+#TODO need to address the notification as a new controller
+post 'notification/:id/invitation/:invite_id',to:'communities#notification_show',as:"show_notification"
   
 resources :profile, except: [:new, :create, :edit, :update, :destroy, :index, :show] do
 	collection do

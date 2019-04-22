@@ -13,6 +13,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :profile , dependent: :destroy
+  has_many :notifications,as: :notify,dependent: :destroy
   has_and_belongs_to_many :clubs,-> { distinct } do
     def << (value)
       super value rescue ActiveRecord::RecordNotUnique

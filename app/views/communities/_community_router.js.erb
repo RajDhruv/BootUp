@@ -1,5 +1,8 @@
 <%at_action||=nil%>
+
 <%case from%>
+<%when :ask_private%>
+	$("#invitation_<%=@club.id%>").html("<label style='color:orange;'>Request Sent</label>");
 <%when :destroy%>
 	document.getElementById("communities_nav").click();
 <%when :create%>
@@ -43,3 +46,6 @@
 		text: '<%=notice%>'
 	}).show();
 <%end%>
+
+$('#notification_area').html("<%=j render 'shared/notifications',notifications:@notifications%>");
+$('#notification_count').html("<%=@notifications.length%>");
