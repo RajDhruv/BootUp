@@ -14,6 +14,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :profile , dependent: :destroy
   has_many :notifications,as: :notify,dependent: :destroy
+  has_many :club_admins,foreign_key: :admin_id
+  has_many :administered_clubs,through: :club_admins,source: :club
   has_and_belongs_to_many :clubs,-> { distinct } do
     def << (value)
       super value rescue ActiveRecord::RecordNotUnique
@@ -52,7 +54,7 @@ class User < ApplicationRecord
   end
 
   def is_admin_of
-    ClubAdmin.where(admin_id: self.id).includes(:club).map(&:club)
+    self.administered_clubs
   end
   #TODO make a preference model that will store the persistence
 end
