@@ -50,6 +50,7 @@ class CommunitiesController < ApplicationController
   end
 
   def show
+    #TODO need to make this ajax
   	render partial:"community_router.js.erb",locals:{from: :show}
   end
 
