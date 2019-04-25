@@ -8,6 +8,11 @@
   <li class="nav-item">
     <a class="nav-link" id="bosses-tab" data-toggle="tab" href="#bosses" role="tab" aria-controls="bosses" aria-selected="false">Boss</a>
   </li>
+  <%if @club.private_club? && (@club.has_admin?(current_user)||@club.owner_is == current_user)%>
+    <li class="nav-item">
+      <a class="nav-link" id="invitations-tab" data-toggle="tab" href="#invitations" role="tab" aria-controls="invitations" aria-selected="false">Requests</a>
+    </li>
+  <%end%>
 </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -18,24 +23,33 @@
   </div>
   <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">
     <%@club.users.each do |member|%>
-    <%=render '/shared/user',user:member%>
+      <%=render '/shared/user',user:member%>
     <%end%>
   </div>
 
   <div class="tab-pane fade" id="bosses" role="tabpanel" aria-labelledby="bosses-tab">
      <!-- admin details appear here -->
     <h2>Owner</h2>
-    <%=render '/shared/user',user:@club.owner_is?%>
+      <%=render '/shared/user',user:@club.owner_is%>
     <hr>
     <h4>Admins</h4>
-    
       <%@club.admins.each do |admin|%>
-        
           <%=render '/shared/user',user:admin%>
-        
       <%end%>
-      
-    
   </div>
-
+  <%if @club.private_club? && (@club.has_admin?(current_user)||@club.owner_is == current_user)%>
+    <div class="tab-pane fade" id="invitations" role="tabpanel" aria-labelledby="invitations-tab">
+      <div class="row">
+        <%@club.invitations.pending.each do |invitation|%>
+          <div class="col col-md-10">
+            <%=render '/shared/user',user:invitation.requester%>
+          </div>
+          <div class="col col-md-2">
+            <%=link_to "Yes",accept_member_into_community_path(invitation:invitation.id,id:@club.id,invitee_id:invitation.requester.id,status:1),method: :post,class:"btn btn-success",remote: true %>
+            <%=link_to "No",accept_member_into_community_path(invitation:invitation.id,id:@club.id,invitee_id:invitation.requester.id,status:0),method: :post,class:"btn btn-danger" ,remote: true%>
+          </div>
+        <%end%>
+      </div>
+    </div>
+  <%end%>
 </div>

@@ -9,7 +9,7 @@ resources :communities do
 	member do 
 		post 'join',to:'communities#join_public'
 		post 'requested',to:'communities#ask_private'
-		post 'approve_invite',to:'communities#approve_invite'
+		post 'approve_invite/:invitee_id/:status/:invitation',to:'communities#approve_invite',as:"accept_member_into"
 	end
 end
 #TODO need to address the notification as a new controller

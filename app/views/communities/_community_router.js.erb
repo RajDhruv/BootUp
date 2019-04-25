@@ -1,6 +1,8 @@
 <%at_action||=nil%>
 
 <%case from%>
+<%when :approve_invite%>
+	
 <%when :ask_private%>
 	$("#invitation_<%=@club.id%>").html("<label style='color:orange;'>Request Sent</label>");
 <%when :destroy%>

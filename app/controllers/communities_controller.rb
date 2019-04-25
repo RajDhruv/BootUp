@@ -1,6 +1,6 @@
 class CommunitiesController < ApplicationController
   layout "lbd4_application"
-  before_action :set_club, only: [:show,:join_public,:edit,:update,:destroy,:ask_private]
+  before_action :set_club, only: [:show,:join_public,:edit,:update,:destroy,:ask_private,:approve_invite]
   before_action :get_notifications
   def index
   	@my_clubs=current_user.clubs.page(params[:page]).per(10)
@@ -18,7 +18,7 @@ class CommunitiesController < ApplicationController
   end
 
   def owned_club
-  	@owned_clubs=Club.where(owner:current_user.id).page(params[:page]).per(10)
+  	@owned_clubs=Club.where(owner_is:current_user).page(params[:page]).per(10)
   	render partial:"community_router.js.erb",locals:{from: :owned_club}
   end
 
@@ -60,20 +60,27 @@ class CommunitiesController < ApplicationController
   end
 
   def ask_private
-  	@invite=Invitation.create(club:@club,requester_id:current_user.id,status: 0,invite_type:0)
+  	@invite=Invitation.create(club:@club,requester:current_user,status: 0,invite_type:0)
   	@club.admins.each do |admin|
-  		@notification=Notification.new(notify:admin,content:"#{current_user.display_name} has asked to join club #{@club.name}")
-  		@notification.invitation_id=@invite.id
-  		@notification.save
+  		Notification.create(actor:current_user,recipient:admin,notifiable:@club,action:"requested to join")
   	end
   	#TODO make this code efficient
-  	@owner=User.find_by_id(@club.owner)
-  	@notification=Notification.new(notify:@owner,content:"#{current_user.display_name} has asked to join club #{@club.name}")
-  	@notification.invitation_id=@invite.id
-  	@notification.save
+  	Notification.create(actor:current_user,recipient:@club.owner_is,notifiable:@club,action:"requested to join")
   	render partial:"community_router.js.erb",locals:{from: :ask_private,notice:"Invitation Sent"}
   end
-
+  def approve_invite
+  	if params[:status]=="1"
+  		@club.users<<User.find_by_id(params[:invitee_id])
+  		Invitation.find_by_id(params[:invitation]).update(status:1,approver_id:current_user.id)
+  		notice="Accepted"
+  		type="success"
+  	else
+  		Invitation.find_by_id(params[:invitation]).update(status:-1,approver_id:current_user.id)
+  		notice="Rejected"
+  		type="error"
+  	end
+  	render partial:"community_router.js.erb",locals:{from: :approve_invite,notice:notice,type:type}
+  end
   private
 
   def club_params

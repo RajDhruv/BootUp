@@ -13,7 +13,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :profile , dependent: :destroy
-  has_many :notifications,as: :notify,dependent: :destroy
+  has_many :notifications,foreign_key: :recipient_id
+  has_many :invitations,foreign_key: :requester_id
+
   has_many :club_admins,foreign_key: :admin_id
   has_many :administered_clubs,through: :club_admins,source: :club
   has_and_belongs_to_many :clubs,-> { distinct } do
