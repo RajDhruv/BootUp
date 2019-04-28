@@ -1,0 +1,17 @@
+<%if notice%>
+	new Noty({
+		timeout: 1000,
+		type: '<%=type rescue "success"%>',
+		layout: 'topCenter',
+		text: '<%=notice%>'
+	}).show();
+<%end%>
+<%case from%>
+<%when :seen%>
+	$('#notification_count').css('display','none');
+<%when :index%>
+	$("#view_id").html("Notifications");
+	$("#main-timeline").html("<%=j render partial:'index'%>");
+	$("#notification_button").click();
+<%end%>
+

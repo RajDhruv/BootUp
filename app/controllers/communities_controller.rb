@@ -96,6 +96,6 @@ class CommunitiesController < ApplicationController
   end
 
   def get_notifications
-  	@notifications=current_user.notifications
+  	@notifications=current_user.notifications.unread
   end
 end
