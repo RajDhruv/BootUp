@@ -13,7 +13,7 @@ class NotificationsController < ApplicationController
 
   private
   def get_notifications
-  	@notifications=current_user.notifications.recent
+  	@notifications=current_user.notifications.unread
   end
 
 end
