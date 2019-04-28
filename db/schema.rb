@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_13_200739) do
+ActiveRecord::Schema.define(version: 2019_04_28_144716) do
 
   create_table "blogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -66,6 +66,29 @@ ActiveRecord::Schema.define(version: 2019_04_13_200739) do
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
   end
 
+  create_table "invitations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "club_id"
+    t.integer "approver_id"
+    t.integer "requester_id"
+    t.integer "status"
+    t.integer "invite_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_invitations_on_club_id"
+  end
+
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "actor_id"
+    t.datetime "read_at"
+    t.string "action"
+    t.string "notifiable_type"
+    t.bigint "notifiable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable_type_and_notifiable_id"
+  end
+
   create_table "preferences", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "panel_color"
@@ -97,12 +120,15 @@ ActiveRecord::Schema.define(version: 2019_04_13_200739) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "roles"
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "club_admins", "clubs"
   add_foreign_key "club_admins", "users", column: "admin_id"
+  add_foreign_key "invitations", "clubs"
   add_foreign_key "preferences", "users"
   add_foreign_key "profiles", "users"
 end

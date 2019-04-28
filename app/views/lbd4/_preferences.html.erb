@@ -86,9 +86,11 @@
                     <img src="<%=image_url('sidebars/sidebar-5.jpg')%>" id="sidebar-5" alt="" onclick="set_background_image('sidebar-5.jpg');" />
                 </a>
             </li>
+            <%unless user_prefs.image_selected.nil?%>
             <script type="text/javascript">
                 $("#<%=user_prefs.image_selected.split('.').first%>").parent().parent().addClass('active');
             </script>
+            <%end%>
         </ul>
     </div>
 </div>
