@@ -70,13 +70,16 @@ class CommunitiesController < ApplicationController
   	render partial:"community_router.js.erb",locals:{from: :ask_private,notice:"Invitation Sent"}
   end
   def approve_invite
+    @invitee = User.find_by_id(params[:invitee_id])
   	if params[:status]=="1"
-  		@club.users<<User.find_by_id(params[:invitee_id])
+  		@club.users<<@invitee
   		Invitation.find_by_id(params[:invitation]).update(status:1,approver_id:current_user.id)
+      Notification.create(actor:current_user,recipient:@invitee,notifiable:@club,action:"Approved your request to join")
   		notice="Accepted"
   		type="success"
   	else
   		Invitation.find_by_id(params[:invitation]).update(status:-1,approver_id:current_user.id)
+      Notification.create(actor:current_user,recipient:@invitee,notifiable:@club,action:"Rejected your request to join")
   		notice="Rejected"
   		type="error"
   	end
