@@ -1,0 +1,24 @@
+<%#=link_to "New Club",new_community_path,class:"btn btn-success",remote:true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Loading...',text_color: 'gold').html_safe%>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%=link_to "Posts",posts_community_path(id:@club.id),class:"nav-link",id:"posts",remote:true%>
+  </li>
+  <li class="nav-item">
+    <%=link_to "Members",members_community_path(id:@club.id),class:"nav-link",id:"members",remote:true%>
+  </li>
+  <li class="nav-item">
+    <%=link_to "Boss",boss_community_path(id:@club.id),class:"nav-link",id:"boss",remote:true%>
+    
+  </li>
+  <%if @club.private_club? && (@club.has_admin?(current_user)||@club.owner_is == current_user)%>
+    <li class="nav-item">
+     <%=link_to "Invitations",invitations_community_path(id:@club.id),class:"nav-link",id:"invitations",remote:true%>
+    </li>
+  <%end%>
+  
+</ul>
+    
+<div class="tab-content" id="myTabContent">
+    <%=render 'posts'%>
+</div>

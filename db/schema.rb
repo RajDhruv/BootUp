@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_04_28_144716) do
 
+
   create_table "blogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -98,7 +99,6 @@ ActiveRecord::Schema.define(version: 2019_04_28_144716) do
     t.string "image_selected"
     t.index ["user_id"], name: "index_preferences_on_user_id"
   end
-
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "first_name"
@@ -129,6 +129,8 @@ ActiveRecord::Schema.define(version: 2019_04_28_144716) do
   add_foreign_key "club_admins", "clubs"
   add_foreign_key "club_admins", "users", column: "admin_id"
   add_foreign_key "invitations", "clubs"
+
   add_foreign_key "preferences", "users"
+
   add_foreign_key "profiles", "users"
 end

@@ -1,0 +1,22 @@
+<%=link_to "New Club",new_community_path,class:"btn btn-success",remote:true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Loading...',text_color: 'gold').html_safe%>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%=link_to "My Clubs",owned_communities_path,class:"nav-link",id:"owned",remote:true%>
+  </li>
+  <li class="nav-item">
+    <%=link_to "Membership",communities_path,class:"nav-link",id:"index",remote:true%>
+  </li>
+  <li class="nav-item">
+    <%=link_to "Public Clubs",public_communities_path,class:"nav-link",id:"public",remote:true%>
+    
+  </li>
+  <li class="nav-item">
+   <%=link_to "Private Clubs",private_communities_path,class:"nav-link",id:"private",remote:true%>
+  </li>
+  
+</ul>
+    
+<div class="tab-content" id="myTabContent">
+    <%=render 'communities',clubs:@my_clubs%>
+</div>

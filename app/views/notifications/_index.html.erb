@@ -1,0 +1,4 @@
+<%@notifications.each do |notification|%>
+	<a class="dropdown-item" href="<%#=notification.link%>"><%=notification.actor.display_name%> <%=notification.action%> <%=notification.notifiable.name%></a>
+<%end%>
+<%= paginate @notifications, :remote => true %>
