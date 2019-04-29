@@ -1,6 +1,6 @@
 class CommunitiesController < ApplicationController
   layout "lbd4_application"
-  before_action :set_club, only: [:show,:join_public,:edit,:update,:destroy,:ask_private,:approve_invite]
+  before_action :set_club, only: [:show,:join_public,:edit,:update,:destroy,:ask_private,:approve_invite,:posts,:members,:boss,:invitations]
   before_action :get_notifications
   def index
   	@my_clubs=current_user.clubs.page(params[:page]).per(10)
@@ -85,6 +85,29 @@ class CommunitiesController < ApplicationController
   	end
   	render partial:"community_router.js.erb",locals:{from: :approve_invite,notice:notice,type:type}
   end
+
+  def posts
+    @posts=[]
+    render partial:"community_router.js.erb",locals:{from: :posts}
+  end
+
+  def members
+    @members=@club.users.page(params[:page]).per(10)
+    render partial:"community_router.js.erb",locals:{from: :members}
+  end
+
+  def boss
+
+    @boss=@club.owner_is
+    @admins=@club.admins
+    render partial:"community_router.js.erb",locals:{from: :boss}
+  end
+
+  def invitations
+    @invitations = @club.invitations.pending.page(params[:page]).per(10)
+    render partial:"community_router.js.erb",locals:{from: :invitations}
+  end
+
   private
 
   def club_params
