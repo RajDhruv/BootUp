@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_22_181017) do
+ActiveRecord::Schema.define(version: 2019_04_28_144716) do
+
 
   create_table "blogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -89,6 +90,15 @@ ActiveRecord::Schema.define(version: 2019_04_22_181017) do
     t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable_type_and_notifiable_id"
   end
 
+  create_table "preferences", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "panel_color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "display_panel_image"
+    t.string "image_selected"
+    t.index ["user_id"], name: "index_preferences_on_user_id"
+  end
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "first_name"
@@ -110,12 +120,17 @@ ActiveRecord::Schema.define(version: 2019_04_22_181017) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "roles"
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "club_admins", "clubs"
   add_foreign_key "club_admins", "users", column: "admin_id"
   add_foreign_key "invitations", "clubs"
+
+  add_foreign_key "preferences", "users"
+
   add_foreign_key "profiles", "users"
 end

@@ -13,6 +13,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :profile , dependent: :destroy
+
   has_many :notifications,foreign_key: :recipient_id
   has_many :invitations,foreign_key: :requester_id
 
@@ -23,13 +24,35 @@ class User < ApplicationRecord
       super value rescue ActiveRecord::RecordNotUnique
     end
   end
-  after_create :create_profile
-  after_save :create_profile
+  has_one :preference , dependent: :destroy
+  after_create :create_profile, :create_preference
+  after_save :create_profile, :create_preference
   has_friendship
+
+  attr_writer :login
+
+  def login
+    @login || self.username || self.email
+  end
+
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      where(conditions.to_h).first
+    end
+  end
 
   def create_profile
     unless self.profile.present?
       Profile.create(user:self)
+    end
+  end
+
+  def create_preference
+    unless self.preference.present?
+      Preference.create(user:self)
     end
   end
 

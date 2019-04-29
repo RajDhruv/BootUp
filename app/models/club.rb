@@ -1,9 +1,13 @@
 class Club < ApplicationRecord
+
 	has_and_belongs_to_many :users,-> { distinct } do
 	  def << (value)
 	    super value rescue ActiveRecord::RecordNotUnique
 	  end
-	end
+
+	has_many :club_admins
+	has_many :admins, through: :club_admins, class_name: "User"
+	
 	has_many :invitations
 	has_many :club_admins,dependent: :destroy
 	has_many :admins, through: :club_admins, class_name: "User"

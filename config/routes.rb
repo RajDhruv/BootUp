@@ -38,6 +38,14 @@ resources :profile, except: [:new, :create, :edit, :update, :destroy, :index, :s
 	end
 end
 
+	resources :preferences do
+		collection do
+		  get 'change_panel_color'
+		  get 'toggle_background_image'
+		  get 'set_background_image'
+		end
+	end
+
   devise_for :users
   resources :blogs
   root "blogs#index"
