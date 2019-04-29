@@ -4,7 +4,7 @@ class Club < ApplicationRecord
 	  def << (value)
 	    super value rescue ActiveRecord::RecordNotUnique
 	  end
-
+	end
 	has_many :club_admins
 	has_many :admins, through: :club_admins, class_name: "User"
 	
