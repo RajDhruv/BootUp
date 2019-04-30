@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_one :profile , dependent: :destroy
   has_one :preference , dependent: :destroy
   has_many :notifications,foreign_key: :recipient_id,dependent: :destroy
+  has_many :sent_notifications,class_name:'Notification',foreign_key: :actor_id,dependent: :destroy
   has_many :invitations,foreign_key: :requester_id,dependent: :destroy
   has_many :owned_clubs,class_name:'Club',foreign_key: :owner,dependent: :destroy
   has_many :club_admins,foreign_key: :admin_id,dependent: :destroy
