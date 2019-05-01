@@ -4,7 +4,10 @@ class CommunitiesController < ApplicationController
   before_action :get_notifications
   def index
   	@my_clubs=current_user.clubs.page(params[:page]).per(10)
-  	render partial:"community_router.js.erb",locals:{from: :index}
+    respond_to do |format|
+    	format.js{ render partial:"community_router.js.erb",locals:{from: :index} }
+      format.html{ render template:"communities/_index.html.erb",locals:{requested_from: "html_request"}}
+    end
   end
 
   def public

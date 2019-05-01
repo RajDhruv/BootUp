@@ -1,3 +1,4 @@
+<%requested_from||=""%>
 <%=link_to "New Club",new_community_path,class:"btn btn-success",remote:true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Loading...',text_color: 'gold').html_safe%>
 
 <ul class="nav nav-tabs">
@@ -20,3 +21,11 @@
 <div class="tab-content" id="myTabContent">
     <%=render 'communities',clubs:@my_clubs%>
 </div>
+<%if requested_from=="html_request"%>
+<script type="text/javascript">
+  $("#view_id").html("Choose Club");
+  $('#communities_nav').parent().addClass("active");
+  $("#communities_nav").addClass("active");
+  $("#index").addClass("active");
+</script>
+<%end%>
