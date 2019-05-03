@@ -6,13 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-
+users = []
+preferences = []
+profiles = []
 
 50.times do |index|
-	User.create(email:"user_#{index}@example.com",username:"user_#{index}",password:"123456",password_confirmation:"123456")
+	users<<{email:"user_#{index+1}@example.com",username:"user_#{index+1}",encrypted_password:"$2a$11$4lJUFHKKnxdodq8lGqETYOE2sfcME4aHDikEqbf3y0iSrq0QiNuYy"}
+	profiles<<{user_id:index+1}
+	preferences<<{user_id:index+1}
 end
-puts "50 users created"
+
+User.import!(users)#password is 123456
+puts "50 users created default password is : 123456"
+Profile.import!(profiles)
+puts "50 profiles created"
+Preference.import!(preferences)
+puts "50 preferences created"
+
 
 dhruv=User.create(email:"raj.drv@gmail.com",username:"dhruv",password:"pleomaxX1!",password_confirmation:"pleomaxX1!")
 puts "Dhruv Created"
@@ -27,13 +37,13 @@ puts "Faraz Private Created"
 dhruv_pvt = Club.create(name:"Dhruv Private",description:"Some sassy Descripttion",active:true,membership_type:1,owner_is:dhruv)
 puts "Dhruv Private Created"
 
-(1..25).each do |id|
-	faraz_pvt.users<<User.find(id)
+User.first(25).each do |user|
+	faraz_pvt.users<<user
 end
-
-(26..50).each do |id|
-	dhruv_pvt.users<<User.find(id)
+puts "first 25 users are members of faraz private"
+(User.last(27) - User.last(2)).each do |user|
+	dhruv_pvt.users<<user
 end
-
+puts "next 25 are members of dhruv private"
 
 
