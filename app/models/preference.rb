@@ -5,7 +5,7 @@ class Preference < ApplicationRecord
   before_create :set_default_values 
 
   def update_panel_color(color)
-  	#TODO: need to secure send method so that unwanted value in params is handled
+  	#TODO SECURITY : need to secure send method so that unwanted value in params is handled
   	self.send(color+"!")
   end
 

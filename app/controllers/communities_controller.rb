@@ -118,6 +118,7 @@ class CommunitiesController < ApplicationController
   end
 
   def set_club
+    #TODO SECURITY : currently we allow only access to open the club through AJAX but if somehow the user has the Clubs ID he may still open the club. We need to prevent that.
   	@club=Club.find_by_id(params[:id])
   end
 

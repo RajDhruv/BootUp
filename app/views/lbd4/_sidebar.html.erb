@@ -27,15 +27,12 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
             <li class="nav-item">
-            <%=link_to '<i class="nc-icon nc-vector"></i><p>Communities</p>'.html_safe,communities_path,class:"nav-link",id:"communities_nav",remote: true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Loading Communities',text_color: 'gold').html_safe%>
+            <%=link_to '<i class="nc-icon nc-vector"></i><p>Clubs</p>'.html_safe,communities_path,class:"nav-link",id:"communities_nav",remote: true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Loading Clubs',text_color: 'gold').html_safe%>
 
 
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./typography.html">
-                    <i class="nc-icon nc-circle-09"></i>
-                    <p>Friends</p>
-                </a>
+                <%=link_to '<i class="nc-icon nc-vector"></i><p>Friends</p>'.html_safe,communities_path,class:"nav-link",id:"communities_nav",remote: true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Loading Friends',text_color: 'gold').html_safe%>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="./icons.html">
