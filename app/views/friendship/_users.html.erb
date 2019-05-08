@@ -1,0 +1,9 @@
+<%= paginate users, :remote => true %>
+<center>
+<div class="card-columns">
+      <%users.each do |friend|%>
+      <%=render '/shared/user_card',user:friend%>
+      <%end%>
+</div>
+</center>
+<%= paginate users, :remote => true %>

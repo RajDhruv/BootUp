@@ -1,0 +1,25 @@
+<%if notice%>
+	new Noty({
+		timeout: 1000,
+		type: '<%=type rescue "success"%>',
+		layout: 'topCenter',
+		text: '<%=notice%>'
+	}).show();
+<%end%>
+<%case from%>
+<%when :index%>
+	$("#view_id").html("Friends");
+	$("#main-timeline").html("<%=j render partial:'friendship/index'%>");
+	$('#friendship_nav').parent().find('li').removeClass("active");
+	$('#friendship_nav').parent().addClass("active");
+	$('#friendship_nav').addClass("active");
+<%when :allUsers%>
+	$('#myTabContent').html("<%= j render 'users',users:@users%>");
+<%when :blockedUsers%>
+	$('#myTabContent').html("<%= j render 'users',users:@blocked_users%>");
+<%when :pendingUsers%>
+	$('#myTabContent').html("<%= j render 'users',users:@pending_users%>");
+<%end%>
+// $("#table-filters li").parent().find('li').removeClass("active");
+// $('#communities_nav').parent().addClass("active");
+// $("#communities_nav").addClass("active");

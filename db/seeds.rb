@@ -46,4 +46,13 @@ puts "first 25 users are members of faraz private"
 end
 puts "next 25 are members of dhruv private"
 
+#Friendship
+
+User.first(25).each do |user|
+	user.friend_request faraz
+	faraz.accept_request user
+end
+
+
+
 

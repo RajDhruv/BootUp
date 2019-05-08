@@ -1,0 +1,9 @@
+<div class="card" style="width: 100%;">
+  <%=image_tag user.profile_image.empty? ? asset_path('default_logos/default_profile.png') : user.profile_image ,class:"card-img-top" rescue ""%>
+  <div class="card-body">
+    <h5 class="card-title"><%=user.display_name%></h5>
+    <%bio_display=(user.profile.bio.nil?) ? "My Bio" : user.profile.bio%>
+    <p class="card-text"><i>"<%=bio_display%>"</i></p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>

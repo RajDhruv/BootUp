@@ -6,6 +6,18 @@ resources :notifications,except: [:new, :create, :edit, :update, :destroy, :show
 	end
 end
 
+resources :friendship do
+	collection do
+		get 'allUsers'
+		get 'blockedUsers'
+		get 'pendingUsers'
+	end
+	member do 
+		get 'showUser'
+	end
+end
+
+
 resources :communities do
 	collection do
 		get 'public',to:'communities#public'
