@@ -1,2 +1,50 @@
-<h1>Profile#show</h1>
-<p>Find me in app/views/profile/show.html.erb</p>
+<style type="text/css">
+.bgimg {
+    background: url('https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400') no-repeat;
+    background-size: cover;
+}
+.img-circle {
+  border-radius: 50%;
+}
+</style>
+
+<div class="card text-center">
+  <div class="card-header">
+    <center class="bgimg">
+        <%=image_tag @user.profile_image.empty? ? asset_path('default_logos/default_profile.png') : @user.profile_image ,class:"img-circle",width:140,height:140,border:0 rescue ""%> 
+    </center>
+    <hr>
+</div>
+
+<div class="card-body">
+    <span>
+    <center>
+        <h3 class="media-heading"><%=@user.display_name%><small><%=@user.email%></small></h3>
+          <i>"<%=bio_display(@user)%>"</i>
+        <br>
+    </center>
+    </span>
+    <span>
+        <div class="btn-group dropdown">
+          <button type="button" class="btn btn-secondary">
+            Split dropright
+          </button>
+          <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropright</span>
+          </button>
+          <div class="dropdown-menu">
+            <!-- Dropdown menu links -->
+            <a href="" class="dropdown-item">Block</a>
+            <a href="" class="dropdown-item">Message</a>
+          </div>
+        </div>
+    </span>
+</div>
+<hr>
+<div class="card-footer">
+  <center>
+    <button type="button" class="btn btn-default" data-dismiss="modal">I've heard enough about Joe</button>
+    <!-- here on the timeline continues -->
+    </center>
+</div>
+</div>
