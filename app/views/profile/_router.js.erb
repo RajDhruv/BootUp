@@ -1,6 +1,9 @@
 <%case from%>
+<%when :show%>
+$('#view_id').html('<%=@user.display_name%>');
+$("#main-timeline").html("<%=j render partial:'show'%>");
 <%when :edit%>
-$('#view_id').html('Edit Profile')
+$('#view_id').html('Edit Profile');
 // $("#playground").html("<%=j render partial:'edit_form'%>");
 $("#main-timeline").html("<%=j render partial:'edit_form'%>");
 $("#edit_profile_message").click();
