@@ -30,14 +30,16 @@ class FriendshipController < ApplicationController
 		render partial:"friendship_router.js.erb",locals:{from: :addFriend,notice:"Request Sent",type:"success"}
 	end
 	def decision
+		received_from=params[:received_from]
+		@user=@friend
 		if params[:status]=="1"
 			current_user.accept_request @friend
 			Notification.create(actor:current_user,recipient:@friend,notifiable:current_user,action:"accepted your friend request")
-			render partial:"friendship_router.js.erb",locals:{from: :decision,notice:"Accepted",type:"success"}
+			render partial:"friendship_router.js.erb",locals:{from: :accepted,notice:"Accepted",type:"success",received_from: received_from}
 		else
 			current_user.decline_request @friend
 			Notification.create(actor:current_user,recipient:@friend,notifiable:current_user,action:"declined your friend request")
-			render partial:"friendship_router.js.erb",locals:{from: :decision,notice:"Rejected",type:"error"}
+			render partial:"friendship_router.js.erb",locals:{from: :rejected,notice:"Rejected",type:"error",received_from: received_from}
 		end
 	end
 
@@ -55,7 +57,8 @@ class FriendshipController < ApplicationController
 
 	def unfriend
 		current_user.remove_friend @friend
-		render partial:"friendship_router.js.erb",locals:{from: :decision,notice:"Unfriended",type:"error"}
+		@user=@friend
+		render partial:"friendship_router.js.erb",locals:{from: :unfriend,notice:"Unfriended",type:"error"}
 	end
 
 	private

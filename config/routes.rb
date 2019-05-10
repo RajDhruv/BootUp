@@ -15,7 +15,7 @@ resources :friendship do
 	member do 
 		get 'showUser'
 		get 'addFriend'
-		post 'decision/:status',to:'friendship#decision',as:"decision"
+		post 'decision/:status/:received_from',to:'friendship#decision',as:"decision"
 		post 'block'
 		post 'unblock'
 		post 'unfriend'

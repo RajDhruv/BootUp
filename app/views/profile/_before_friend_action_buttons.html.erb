@@ -1,0 +1,19 @@
+
+                  <%if current_user.pending_friends.include? @user%>
+                  
+                  <label style='color:orange;' class="dropdown-item">Request Sent</label>
+                  
+                  <%elsif current_user.requested_friends.include? @user%>
+                  
+                  <span class="dropdown-item">
+                    Requested to be your Friend: 
+                    <%=link_to "Accept" , decision_friendship_path(id:@user,status:1,received_from:'show'),method: :post,remote:true%>
+                    /
+                    <%=link_to "Reject" , decision_friendship_path(id:@user,status:0,received_from:'show'),method: :post,remote:true%>
+                    </span>
+                  
+                  <%else%>  
+                    
+                    <%=link_to "Add Friend" , addFriend_friendship_path(@user),class:"dropdown-item",remote:true%>
+                  
+                  <%end%>
