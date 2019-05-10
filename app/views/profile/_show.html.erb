@@ -1,3 +1,4 @@
+<%my_profile = (current_user == @user)%>
 <style type="text/css">
 .bgimg {
     background: url('https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400') no-repeat;
@@ -27,13 +28,40 @@
     <span>
         <div class="btn-group dropdown">
           <button type="button" class="btn btn-outline-secondary disabled">
-            Split dropright
+            Action
           </button>
           <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropright</span>
           </button>
           <div class="dropdown-menu">
             <!-- Dropdown menu links -->
+            <span id="user_<%=@user.id%>">
+            <%if !my_profile%>
+            
+              <%unless current_user.friends_with?(@user)%>  
+                
+                <%if current_user.pending_friends.include? @user%>
+                  
+                  <label style='color:orange;' class="dropdown-item">Request Sent</label>
+                  
+                  <%elsif current_user.requested_friends.include? @user%>
+                  
+                  <span class="dropdown-item">
+                    Requested to be your Friend: 
+                    <%=link_to "Accept" , decision_friendship_path(id:@user,status:1),method: :post,remote:true%>
+                    /
+                    <%=link_to "Reject" , decision_friendship_path(id:@user,status:0),method: :post,remote:true%>
+                    </span>
+                  
+                  <%else%>  
+                    
+                    <%=link_to "Add Friend" , addFriend_friendship_path(@user),class:"dropdown-item",remote:true%>
+                  
+                  <%end%>
+                
+                <%end%>
+              <%end%>
+            </span>
             <a href="" class="dropdown-item">Block</a>
             <a href="" class="dropdown-item">Message</a>
           </div>

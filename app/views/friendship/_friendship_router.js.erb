@@ -8,7 +8,7 @@
 <%end%>
 <%case from%>
 <%when :decision%>
-	document.getElementById("requested_friends").click();
+	//document.getElementById("requested_friends").click();
 <%when :addFriend%>
 	$('#user_<%=@friend.id%>').html("<label style='color:orange;'>Request Sent</label>");
 <%when :index%>
@@ -24,6 +24,3 @@
 <%when :pendingUsers%>
 	$('#myTabContent').html("<%= j render 'users',users:@pending_users%>");
 <%end%>
-// $("#table-filters li").parent().find('li').removeClass("active");
-// $('#communities_nav').parent().addClass("active");
-// $("#communities_nav").addClass("active");
