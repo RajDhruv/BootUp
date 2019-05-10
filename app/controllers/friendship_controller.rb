@@ -1,6 +1,6 @@
 class FriendshipController < ApplicationController
 	layout "lbd4_application"
-	before_action :find_friend,only:[:addFriend,:decision]
+	before_action :find_friend,only:[:addFriend,:decision,:block,:unblock,:unfriend]
 
 	def index
 		@dosts = current_user.friends.page(params[:page]).per(10)
@@ -39,6 +39,23 @@ class FriendshipController < ApplicationController
 			Notification.create(actor:current_user,recipient:@friend,notifiable:current_user,action:"declined your friend request")
 			render partial:"friendship_router.js.erb",locals:{from: :decision,notice:"Rejected",type:"error"}
 		end
+	end
+
+	def block
+		current_user.block_friend @friend
+		render partial:"friendship_router.js.erb",locals:{from: :block,notice:"Blocked",type:"info"}
+	end
+
+	def unblock
+		current_user.unblock_friend @friend
+		current_user.friends<<@friend
+		@friend.friends<<current_user
+		render partial:"friendship_router.js.erb",locals:{from: :unblock,notice:"Unblocked",type:"success"}
+	end
+
+	def unfriend
+		current_user.remove_friend @friend
+		render partial:"friendship_router.js.erb",locals:{from: :decision,notice:"Unfriended",type:"error"}
 	end
 
 	private

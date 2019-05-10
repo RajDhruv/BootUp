@@ -2,7 +2,7 @@
   <%=image_tag user.profile_image.empty? ? asset_path('default_logos/default_profile.png') : user.profile_image ,class:"card-img-top" rescue ""%>
   <div class="card-body">
     <h5 class="card-title"><%=link_to user.display_name , profile_path(user),remote:true%></h5>
-    	<%unless current_user.friends_with?(user)%>
+    	<%unless current_user.blocked_friends.include?(user)|| current_user.friends_with?(user) %>
     		<span id="user_<%=user.id%>">
     			<%if current_user.pending_friends.include? user%>
     				<label style='color:orange;'>Request Sent</label>

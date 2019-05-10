@@ -38,7 +38,7 @@
             <span id="user_<%=@user.id%>">
             <%if !my_profile%>
             
-              <%unless current_user.friends_with?(@user)%>  
+              <%unless current_user.friends_with?(@user) || current_user.blocked_friends.include?(@user)%>  
                 
                 <%if current_user.pending_friends.include? @user%>
                   
@@ -58,12 +58,17 @@
                     <%=link_to "Add Friend" , addFriend_friendship_path(@user),class:"dropdown-item",remote:true%>
                   
                   <%end%>
-                
+                <%else%>
+                  <%unless current_user.blocked_friends.include? @user%>
+                  <%=link_to "Block" , block_friendship_path(@user),method: :post , class:"dropdown-item",remote: true%>
+                  <%else%>
+                  <%=link_to "Unblock" , unblock_friendship_path(@user),method: :post , class:"dropdown-item",remote: true%>
+                  <%end%>
+                  <%=link_to "Unfriend" , unfriend_friendship_path(@user),method: :post , class:"dropdown-item",remote: true%>
                 <%end%>
               <%end%>
             </span>
-            <a href="" class="dropdown-item">Block</a>
-            <a href="" class="dropdown-item">Message</a>
+            
           </div>
         </div>
     </span>

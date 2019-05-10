@@ -16,6 +16,9 @@ resources :friendship do
 		get 'showUser'
 		get 'addFriend'
 		post 'decision/:status',to:'friendship#decision',as:"decision"
+		post 'block'
+		post 'unblock'
+		post 'unfriend'
 	end
 end
 
