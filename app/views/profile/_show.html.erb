@@ -19,14 +19,14 @@
 <div class="card-body">
     <span>
     <center>
-        <h3 class="media-heading"><%=@user.display_name%><small><%=@user.email%></small></h3>
+        <h3 class="media-heading"><small><%=@user.email%></small></h3>
           <i>"<%=bio_display(@user)%>"</i>
         <br>
     </center>
     </span>
     <span>
         <div class="btn-group dropdown">
-          <button type="button" class="btn btn-secondary">
+          <button type="button" class="btn btn-outline-secondary disabled">
             Split dropright
           </button>
           <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

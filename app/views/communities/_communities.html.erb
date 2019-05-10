@@ -1,4 +1,5 @@
 <hr>
+<%= paginate clubs, :remote => true %>
 <%clubs.each do |club|%>
 	<%=club.name%>
 		<%unless club.owner==current_user.id%>

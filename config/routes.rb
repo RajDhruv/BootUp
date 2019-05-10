@@ -14,6 +14,8 @@ resources :friendship do
 	end
 	member do 
 		get 'showUser'
+		get 'addFriend'
+		post 'decision/:status',to:'friendship#decision',as:"decision"
 	end
 end
 

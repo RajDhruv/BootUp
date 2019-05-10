@@ -1,3 +1,4 @@
+<%= paginate @members, :remote => true %>
 <%@members.each do |member|%>
 <%=render '/shared/user',user:member%>
 <%end%>

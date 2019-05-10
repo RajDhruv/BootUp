@@ -7,6 +7,10 @@
 	}).show();
 <%end%>
 <%case from%>
+<%when :decision%>
+	document.getElementById("requested_friends").click();
+<%when :addFriend%>
+	$('#user_<%=@friend.id%>').html("<label style='color:orange;'>Request Sent</label>");
 <%when :index%>
 	$("#view_id").html("Friends");
 	$("#main-timeline").html("<%=j render partial:'friendship/index'%>");
