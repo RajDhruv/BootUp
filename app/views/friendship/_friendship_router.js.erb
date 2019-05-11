@@ -1,0 +1,42 @@
+<%if notice%>
+	new Noty({
+		timeout: 1000,
+		type: '<%=type rescue "success"%>',
+		layout: 'topCenter',
+		text: '<%=notice%>'
+	}).show();
+<%end%>
+<%case from%>
+<%when :accepted%>
+	<%case received_from%>
+	<%when 'show'%>
+		$('#user_<%=@friend.id%>').html("<%= j render 'profile/after_friend_action_buttons.html.erb'%>");
+	<%when 'user_listing'%>
+		$('#user_card_<%=@friend.id%>').hide();
+	<%end%>
+	//document.getElementById("requested_friends").click();
+<%when :rejected%>
+	<%case received_from%>
+	<%when 'show'%>
+		$('#user_<%=@friend.id%>').html("<%= j render 'profile/before_friend_action_buttons.html.erb'%>");
+	<%when 'user_listing'%>
+		$('#user_card_<%=@friend.id%>').hide();
+	<%end%>
+	//document.getElementById("requested_friends").click();
+<%when :addFriend%>
+	$('#user_<%=@friend.id%>').html("<label style='color:orange;' class='dropdown-item'>Request Sent</label>");
+<%when :unfriend%>
+	$('#user_<%=@friend.id%>').html("<%= j render 'profile/before_friend_action_buttons.html.erb'%>");
+<%when :index%>
+	$("#view_id").html("Friends");
+	$("#main-timeline").html("<%=j render partial:'friendship/index'%>");
+	$('#friendship_nav').parent().find('li').removeClass("active");
+	$('#friendship_nav').parent().addClass("active");
+	$('#friendship_nav').addClass("active");
+<%when :allUsers%>
+	$('#myTabContent').html("<%= j render 'users',users:@users%>");
+<%when :blockedUsers%>
+	$('#myTabContent').html("<%= j render 'users',users:@blocked_users%>");
+<%when :pendingUsers%>
+	$('#myTabContent').html("<%= j render 'users',users:@pending_users%>");
+<%end%>

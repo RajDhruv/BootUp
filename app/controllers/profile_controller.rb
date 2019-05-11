@@ -1,4 +1,5 @@
 class ProfileController < ApplicationController
+  before_action :set_user, only:[:show]
   def update
   	@profile=current_user.profile
   	@profile.update(profile_params)
@@ -16,6 +17,7 @@ class ProfileController < ApplicationController
   end
 
   def show
+    render partial:"router.js.erb",locals:{from: :show}
   end
   def image
   	@image=Image.new
@@ -45,5 +47,8 @@ class ProfileController < ApplicationController
   private 
   	def profile_params
       params.require(:profile).permit(:first_name, :last_name,:dob,:country)
+    end
+    def set_user
+      @user = User.find_by_id(params[:id])
     end
 end

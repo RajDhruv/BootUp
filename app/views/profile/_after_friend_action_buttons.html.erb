@@ -1,0 +1,6 @@
+<%unless current_user.blocked_friends.include? @user%>
+<%=link_to "Block" , block_friendship_path(@user),method: :post , class:"dropdown-item",remote: true%>
+<%else%>
+<%=link_to "Unblock" , unblock_friendship_path(@user),method: :post , class:"dropdown-item",remote: true%>
+<%end%>
+<%=link_to "Unfriend" , unfriend_friendship_path(@user),method: :post , class:"dropdown-item",remote: true%>

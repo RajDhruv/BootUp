@@ -1,0 +1,31 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item active">
+    <%=link_to "Friends",friendship_index_path,class:"nav-link",id:"friends",remote:true%>
+  </li>
+  <li class="nav-item">
+    <%=link_to "Search",allUsers_friendship_index_path,class:"nav-link",id:"search_friends",remote:true%>
+  </li>
+  <li class="nav-item">
+    <%=link_to "Blocked",blockedUsers_friendship_index_path,class:"nav-link",id:"blocked_friends",remote:true%>
+    
+  </li>
+  <li class="nav-item">
+   <%=link_to "Friend Requests",pendingUsers_friendship_index_path,class:"nav-link",id:"requested_friends",remote:true%>
+  </li>
+  
+</ul>
+    
+<div class="tab-content" id="myTabContent">
+    
+    <%=render 'users',users:@dosts %>
+    
+    
+</div>
+<%#if requested_from=="html_request"%>
+<!-- <script type="text/javascript">
+  $("#view_id").html("Choose Club");
+  $('#communities_nav').parent().addClass("active");
+  $("#communities_nav").addClass("active");
+  $("#index").addClass("active");
+</script> -->
+<%#end%>

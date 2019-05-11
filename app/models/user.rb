@@ -28,7 +28,7 @@ class User < ApplicationRecord
   
   after_create :create_profile, :create_preference
   after_save :create_profile, :create_preference
-  has_friendship
+  has_friendship#TODO there is a problem with the block / unblock mechanism issue raised if it doesnot get handled we will forl the gem and make the change for ourselves
 
   attr_writer :login
 
@@ -68,10 +68,8 @@ class User < ApplicationRecord
   end
 
   def display_name
-    user_profile=self.profile
-    first_name = user_profile.first_name rescue ""
-    last_name = user_profile.last_name rescue ""
-    full_name = "#{first_name} #{last_name}"
+    #TODO Optimize this.
+    full_name = Profile.select(:first_name,:last_name).where(user:self).last.as_json.values.select{|x| x unless x.nil?}.join(" ")
     full_name = full_name.strip.empty? ? self.email.split('@').first : full_name
   end
 

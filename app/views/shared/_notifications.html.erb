@@ -1,4 +1,4 @@
 <%notifications.each do |notification|%>
-	<a class="dropdown-item" href="<%#=notification.link%>"><%=notification.actor.display_name%> <%=notification.action%> <%=notification.notifiable.name%></a>
+		<%=render 'notifications/notification',notification:notification%>
 <%end%>
 <%=link_to 'Show All Notifications',notifications_path,class:'dropdown-item',remote: true%>
