@@ -14,7 +14,7 @@ timelines = []
 50.times do |index|
 	users<<{email:"user_#{index+1}@example.com",username:"user_#{index+1}",encrypted_password:"$2a$11$4lJUFHKKnxdodq8lGqETYOE2sfcME4aHDikEqbf3y0iSrq0QiNuYy"}
 	profiles<<{user_id:index+1}
-	preferences<<{user_id:index+1}
+	preferences<<{user_id:index+1,display_panel_image:true,panel_color:[0,1,2,3,4,5].sample,image_selected:['sidebar-1.jpg','sidebar-2.jpg','sidebar-3.jpg','sidebar-4.jpg','sidebar-5.jpg'].sample }
 	timelines<<{timeable_type:"User",timeable_id:index+1}
 end
 

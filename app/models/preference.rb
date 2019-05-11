@@ -10,8 +10,9 @@ class Preference < ApplicationRecord
   end
 
   def set_default_values
-  	self.panel_color=0
-  	self.display_panel_image = false
+  	self.panel_color=[0,1,2,3,4,5].sample
+  	self.image_selected = ['sidebar-1.jpg','sidebar-2.jpg','sidebar-3.jpg','sidebar-4.jpg','sidebar-5.jpg'].sample
+    self.display_panel_image = true
   end
   
   def toggle_background_image
