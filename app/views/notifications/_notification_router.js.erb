@@ -8,10 +8,11 @@
 <%end%>
 <%case from%>
 <%when :seen%>
-	$('#notification_count').css('display','none');
+	$('#notification_count').html("0");
 <%when :index%>
 	$("#view_id").html("Notifications");
 	$("#main-timeline").html("<%=j render partial:'index'%>");
 	$("#notification_button").click();
 <%end%>
 
+<%=render 'notifications/notification_panel'%>

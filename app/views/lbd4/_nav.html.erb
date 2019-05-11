@@ -22,12 +22,11 @@
                     <a id="notification_button" class="dropdown-toggle nav-link" data-toggle="dropdown" onclick="read_notification();">
                         <i class="nc-icon nc-planet"></i>
                     <%if current_user%>
-                        <%notify=current_user.notifications.unread
-                        if notify.length > 0%>
+                        <%notify=current_user.notifications.unread%>
 
                         <span class="notification" id="notification_count"><%=notify.length%></span>
                         <span class="d-lg-none" id="notification_count_2">Notification</span>
-                        <%end%>
+                        
                     </a>
                     <ul class="dropdown-menu" id="notification_area">
                         <%=render 'shared/notifications',notifications:notify%>

@@ -1,0 +1,5 @@
+<%if @notifications.length > 0%>
+	$('#notification_count').css('display','block');
+	$('#notification_area').html("<%=j render 'shared/notifications',notifications:@notifications%>");
+	$('#notification_count').html("<%=@notifications.length%>");
+<%end%>

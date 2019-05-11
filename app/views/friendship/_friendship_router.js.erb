@@ -40,3 +40,4 @@
 <%when :pendingUsers%>
 	$('#myTabContent').html("<%= j render 'users',users:@pending_users%>");
 <%end%>
+<%=render 'notifications/notification_panel'%>

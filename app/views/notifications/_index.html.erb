@@ -1,4 +1,5 @@
-<%@notifications.each do |notification|%>
+<%= paginate @latest_notifications, :remote => true %>
+<%@latest_notifications.each do |notification|%>
 	<%=render 'notifications/notification',notification:notification%>
 <%end%>
-<%= paginate @notifications, :remote => true %>
+<%= paginate @latest_notifications, :remote => true %>

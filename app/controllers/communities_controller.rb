@@ -1,7 +1,6 @@
 class CommunitiesController < ApplicationController
   layout "lbd4_application"
   before_action :set_club, only: [:show,:join_public,:edit,:update,:destroy,:ask_private,:approve_invite,:posts,:members,:boss,:invitations]
-  before_action :get_notifications
   def index
   	@my_clubs=current_user.clubs.page(params[:page]).per(10)
     respond_to do |format|
@@ -125,9 +124,5 @@ class CommunitiesController < ApplicationController
   def set_club
     #TODO SECURITY : currently we allow only access to open the club through AJAX but if somehow the user has the Clubs ID he may still open the club. We need to prevent that.
   	@club=Club.find_by_id(params[:id])
-  end
-
-  def get_notifications
-  	@notifications=current_user.notifications.unread
   end
 end
