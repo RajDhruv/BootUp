@@ -5,9 +5,9 @@ class CreateEnablers < ActiveRecord::Migration[5.2]
       t.integer :enable_id
       t.integer :timeline_id
       t.integer :author_id
-      t.integer :view_count
-      t.integer :like_count
-      t.integer :comment_count
+      t.integer :view_count,default: 0
+      t.integer :like_count,default: 0
+      t.integer :comment_count,default: 0
 
       t.timestamps
     end

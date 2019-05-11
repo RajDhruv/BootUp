@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 2019_05_11_190220) do
     t.integer "enable_id"
     t.integer "timeline_id"
     t.integer "author_id"
-    t.integer "view_count"
-    t.integer "like_count"
-    t.integer "comment_count"
+    t.integer "view_count", default: 0
+    t.integer "like_count", default: 0
+    t.integer "comment_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
