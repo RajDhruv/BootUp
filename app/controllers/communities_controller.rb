@@ -54,7 +54,12 @@ class CommunitiesController < ApplicationController
 
   def show
     #TODO need to make this ajax
-  	render partial:"community_router.js.erb",locals:{from: :show}
+   
+    if @club.users.include?(current_user) || @club.owner_is == current_user
+      render partial:"community_router.js.erb",locals:{from: :show}
+    else
+      render partial:"community_router.js.erb",locals:{from: :not_allowoed,notice: "You are not a member of #{@club.name} a private club",type:"error"}
+    end
   end
 
 

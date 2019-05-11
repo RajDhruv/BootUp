@@ -28,7 +28,7 @@ class User < ApplicationRecord
   
   after_create :create_profile, :create_preference
   after_save :create_profile, :create_preference
-  has_friendship
+  has_friendship#TODO there is a problem with the block / unblock mechanism issue raised if it doesnot get handled we will forl the gem and make the change for ourselves
 
   attr_writer :login
 
