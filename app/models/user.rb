@@ -14,6 +14,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :profile , dependent: :destroy
   has_one :preference , dependent: :destroy
+  has_one :timeline,as: :timeable,dependent: :destroy
+  has_many :enablers,as: :enable,foreign_key: :author_id,dependent: :destroy
   has_many :notifications,foreign_key: :recipient_id,dependent: :destroy
   has_many :sent_notifications,class_name:'Notification',foreign_key: :actor_id,dependent: :destroy
   has_many :invitations,foreign_key: :requester_id,dependent: :destroy
@@ -26,8 +28,8 @@ class User < ApplicationRecord
     end
   end
   
-  after_create :create_profile, :create_preference
-  after_save :create_profile, :create_preference
+  after_create :create_profile, :create_preference,:create_timeline
+  after_save :create_profile, :create_preference,:create_timeline
   has_friendship#TODO there is a problem with the block / unblock mechanism issue raised if it doesnot get handled we will forl the gem and make the change for ourselves
 
   attr_writer :login
@@ -48,6 +50,12 @@ class User < ApplicationRecord
   def create_profile
     unless self.profile.present?
       Profile.create(user:self)
+    end
+  end
+
+  def create_timeline
+    unless self.timeline.present?
+      Timeline.create(timeable:self)
     end
   end
 

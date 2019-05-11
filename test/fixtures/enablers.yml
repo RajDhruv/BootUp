@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  enable_type: MyString
+  enable_id: 1
+  timeline_id: 1
+  author_id: 1
+  view_count: 1
+  like_count: 1
+  comment_count: 1
+
+two:
+  enable_type: MyString
+  enable_id: 1
+  timeline_id: 1
+  author_id: 1
+  view_count: 1
+  like_count: 1
+  comment_count: 1

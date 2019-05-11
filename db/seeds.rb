@@ -9,11 +9,13 @@
 users = []
 preferences = []
 profiles = []
+timelines = []
 
 50.times do |index|
 	users<<{email:"user_#{index+1}@example.com",username:"user_#{index+1}",encrypted_password:"$2a$11$4lJUFHKKnxdodq8lGqETYOE2sfcME4aHDikEqbf3y0iSrq0QiNuYy"}
 	profiles<<{user_id:index+1}
 	preferences<<{user_id:index+1}
+	timelines<<{timeable_type:"User",timeable_id:index+1}
 end
 
 User.import!(users)#password is 123456
@@ -22,6 +24,8 @@ Profile.import!(profiles)
 puts "50 profiles created"
 Preference.import!(preferences)
 puts "50 preferences created"
+Timeline.import!(timelines)
+puts "50 timelines created"
 
 
 dhruv=User.create(email:"raj.drv@gmail.com",username:"dhruv",password:"pleomaxX1!",password_confirmation:"pleomaxX1!")

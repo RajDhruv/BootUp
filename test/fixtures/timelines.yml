@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  timeable_type: MyString
+  timable_id: 1
+
+two:
+  timeable_type: MyString
+  timable_id: 1
