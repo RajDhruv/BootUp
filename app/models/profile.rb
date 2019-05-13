@@ -9,4 +9,8 @@ class Profile < ApplicationRecord
   	return true
   end
 
+  def name
+  	"#{self.first_name} #{self.last_name}".strip.empty? ? self.user.name : "#{self.first_name} #{self.last_name}"
+  end
+
 end
