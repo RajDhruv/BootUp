@@ -28,10 +28,10 @@ Timeline.import!(timelines)
 puts "50 timelines created"
 
 
-dhruv=User.create(email:"raj.drv@gmail.com",username:"dhruv",password:"pleomaxX1!",password_confirmation:"pleomaxX1!")
+dhruv=User.create(email:"raj.drv@gmail.com",username:"dhruv",password:"pleomaxX1!",password_confirmation:"pleomaxX1!",roles:"admin")
 puts "Dhruv Created"
 
-faraz=User.create(email:"faraznoor75@gmail.com",username:"faraz",password:"pleomaxX1!",password_confirmation:"pleomaxX1!")
+faraz=User.create(email:"faraznoor75@gmail.com",username:"faraz",password:"pleomaxX1!",password_confirmation:"pleomaxX1!",roles:"admin")
 puts "Faraz Created"
 
 
