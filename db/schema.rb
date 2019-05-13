@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2019_05_11_190220) do
   create_table "clubs_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "club_id", null: false
+    t.index ["club_id", "user_id"], name: "index_clubs_users_on_club_id_and_user_id"
+    t.index ["user_id", "club_id"], name: "index_clubs_users_on_user_id_and_club_id"
   end
 
   create_table "enablers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
