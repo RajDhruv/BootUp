@@ -25,7 +25,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :clubs
   
   after_create :create_profile, :create_preference,:create_timeline
-  after_save :create_profile, :create_preference,:create_timeline
+  #after_save :create_profile, :create_preference,:create_timeline
   has_friendship#TODO there is a problem with the block / unblock mechanism issue raised if it doesnot get handled we will forl the gem and make the change for ourselves
 
   attr_writer :login
@@ -76,6 +76,7 @@ class User < ApplicationRecord
     full_name = Profile.select(:first_name,:last_name).where(user:self).last.as_json.values.select{|x| x unless x.nil?}.join(" ")
     full_name = full_name.strip.empty? ? self.email.split('@').first : full_name
   end
+  alias_method :name, :display_name
 
   def image_count
     self.profile.images.count
