@@ -12,7 +12,9 @@ class Club < ApplicationRecord
 	belongs_to :owner_is,class_name:"User",foreign_key: :owner
 	after_create :create_timeline
   	after_save :create_timeline
-	
+	scope :public_clubs, -> (user) {where('membership_type=0 and owner != ?',user.id)}
+	scope :private_clubs, -> (user) {where('membership_type=1 and owner != ?',user.id)}
+	scope :owned_clubs, -> (user) {where(owner_is:user)}
 	def create_timeline
 		unless self.timeline.present?
 			Timeline.create(timeable:self)

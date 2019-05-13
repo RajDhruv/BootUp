@@ -10,17 +10,17 @@ class CommunitiesController < ApplicationController
   end
 
   def public
-  	@all_public_communities=Club.where('membership_type=0 and owner != ?',current_user.id).page(params[:page]).per(10)
+  	@all_public_communities=Club.public_clubs(current_user).page(params[:page]).per(10)
   	render partial:"community_router.js.erb",locals:{from: :public}
   end
 
   def private_club
-  	@all_private_communities=Club.where('membership_type=1 and owner != ?',current_user.id).page(params[:page]).per(10)
+  	@all_private_communities=Club.private_clubs(current_user).page(params[:page]).per(10)
   	render partial:"community_router.js.erb",locals:{from: :private_club}
   end
 
   def owned_club
-  	@owned_clubs=Club.where(owner_is:current_user).page(params[:page]).per(10)
+  	@owned_clubs=Club.owned_clubs(current_user).page(params[:page]).per(10)
   	render partial:"community_router.js.erb",locals:{from: :owned_club}
   end
 
