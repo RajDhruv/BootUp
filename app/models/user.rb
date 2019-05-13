@@ -22,11 +22,7 @@ class User < ApplicationRecord
   has_many :owned_clubs,class_name:'Club',foreign_key: :owner,dependent: :destroy
   has_many :club_admins,foreign_key: :admin_id,dependent: :destroy
   has_many :administered_clubs,through: :club_admins,source: :club
-  has_and_belongs_to_many :clubs,-> { distinct } do
-    def << (value)
-      super value rescue ActiveRecord::RecordNotUnique
-    end
-  end
+  has_and_belongs_to_many :clubs
   
   after_create :create_profile, :create_preference,:create_timeline
   after_save :create_profile, :create_preference,:create_timeline

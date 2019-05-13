@@ -1,10 +1,6 @@
 class Club < ApplicationRecord
 	has_one :timeline,as: :timeable,dependent: :destroy
-	has_and_belongs_to_many :users,-> { distinct } do
-	  def << (value)
-	    super value rescue ActiveRecord::RecordNotUnique
-	  end
-	end
+	has_and_belongs_to_many :users
 	has_many :invitations,dependent: :destroy
 	has_many :club_admins,dependent: :destroy
 	has_many :admins, through: :club_admins, class_name: "User"
