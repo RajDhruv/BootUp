@@ -86,4 +86,7 @@ class User < ApplicationRecord
     self.administered_clubs
   end
   #TODO make a preference model that will store the persistence
+  # includes syntax
+  #User.all.includes(:timeline,:preference,{profile: :images},{clubs: :users},{sent_notifications: :recipient})
+
 end
