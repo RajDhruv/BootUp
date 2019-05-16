@@ -1,4 +1,5 @@
 class ApplicationRecord < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   self.abstract_class = true
   def self.import!(record_list)
     raise ArgumentError "record_list not an Array of Hashes" unless record_list.is_a?(Array) && record_list.all? {|rec| rec.is_a? Hash }

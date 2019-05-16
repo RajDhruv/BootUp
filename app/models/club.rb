@@ -1,6 +1,8 @@
 class Club < ApplicationRecord
+	#this model deals with the group logic in the name of club
 	has_one :timeline,as: :timeable,dependent: :destroy
 	has_and_belongs_to_many :users
+	has_many :notification_subject,class_name:'Notification',as: :notifiable
 	has_many :invitations,dependent: :destroy
 	has_many :club_admins,dependent: :destroy
 	has_many :admins, through: :club_admins, class_name: "User"
@@ -27,6 +29,12 @@ class Club < ApplicationRecord
 
 	def invitation_exist?(user)
 		return self.invitations.where(requester:user,status:0).any?
+	end
+
+	def notification_links(notification)
+		message = "#{notification.actor.display_name} #{notification.action} #{notification.notifiable.name}"
+		path = community_path(self)
+		return message,path
 	end
 
 end

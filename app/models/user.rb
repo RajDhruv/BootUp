@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_one :profile , dependent: :destroy
   has_one :preference , dependent: :destroy
   has_one :timeline,as: :timeable,dependent: :destroy
+  has_many :notification_subject,class_name:'Notification',as: :notifiable
   has_many :enablers,as: :enable,foreign_key: :author_id,dependent: :destroy
   has_many :notifications,foreign_key: :recipient_id,dependent: :destroy
   has_many :sent_notifications,class_name:'Notification',foreign_key: :actor_id,dependent: :destroy
@@ -85,6 +86,12 @@ class User < ApplicationRecord
   def is_admin_of
     self.administered_clubs
   end
+  def notification_links(notification)
+    message = "#{notification.actor.display_name} #{notification.action}"
+    path = profile_path(self)
+    return message,path
+  end
+
   #TODO make a preference model that will store the persistence
   # includes syntax
   #User.all.includes(:timeline,:preference,{profile: :images},{clubs: :users},{sent_notifications: :recipient})
