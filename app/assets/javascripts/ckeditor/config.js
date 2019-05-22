@@ -9,5 +9,6 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.uiColor = '#AADC6E';
 	config.language = 'en';
   	config.uiColor = '#ffffff';
-  	config.embed_provider = '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}'
+  	config.embed_provider = '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}';
+  	config.removePlugins = "oembed";
 };
