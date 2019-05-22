@@ -28,3 +28,5 @@
 /public/uploads
 /Gemfile.lock
 Gemfile.lock
+config/database.yml
+Gemfile.lock
