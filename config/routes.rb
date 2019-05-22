@@ -1,5 +1,6 @@
-Rails.application.routes.draw do
+ Rails.application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 resources :notifications,except: [:new, :create, :edit, :update, :destroy, :show] do 
 	collection do
