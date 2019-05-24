@@ -13,10 +13,7 @@ Tip 2: you can also add an image using data-image tag
         </div>
         <ul class="nav master_navs">
             <li>
-                <a class="nav-link" href="dashboard.html">
-                    <i class="nc-icon nc-album-2"></i>
-                    <p>Timeline</p>
-                </a>
+                <%=link_to '<i class="nc-icon nc-album-2"></i><p>Timeline</p>'.html_safe,profile_path(current_user),class:"nav-link",id:"timeline_nav",remote: true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Loading Clubs',text_color: 'gold').html_safe%>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="./user.html">

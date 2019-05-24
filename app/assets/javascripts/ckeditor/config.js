@@ -11,7 +11,8 @@ CKEDITOR.editorConfig = function( config ) {
   	config.uiColor = '#ffffff';
   	config.embed_provider = '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}';
   	config.removePlugins = "oembed,smiley,iframe";
-  	config.extraPlugins = 'emojione';
+  	config.extraPlugins = 'emojione,uploadfile';
+
   	config.toolbarGroups = [
 		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
 		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },

@@ -37,24 +37,19 @@
             <!-- Dropdown menu links -->
             <span id="user_<%=@user.id%>">
             <%if !my_profile%>
-            
               <%unless current_user.friends_with?(@user) || current_user.blocked_friends.include?(@user)%>  
                   <%= render 'before_friend_action_buttons'%>
-                <%else%>
-                  <%= render 'after_friend_action_buttons'%>
-                <%end%>
+              <%else%>
+                <%= render 'after_friend_action_buttons'%>
               <%end%>
+            <%else%>
+            <%end%>
             </span>
             
           </div>
         </div>
     </span>
 </div>
-<hr>
-<div class="card-footer">
-  <center>
-    <button type="button" class="btn btn-default" data-dismiss="modal">I've heard enough about Joe</button>
-    <!-- here on the timeline continues -->
-    </center>
 </div>
-</div>
+<%=render 'timeline'%>
+

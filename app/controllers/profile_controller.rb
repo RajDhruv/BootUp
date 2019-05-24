@@ -17,6 +17,9 @@ class ProfileController < ApplicationController
   end
 
   def show
+    if current_user == @user || current_user.friends.include?(@user)
+      @timeline_posts = @user.timeline.enablers.page(params[:page]).per(15)
+    end
     render partial:"router.js.erb",locals:{from: :show}
   end
   def image
