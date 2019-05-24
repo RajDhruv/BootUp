@@ -1,1 +1,9 @@
-<%=image_tag asset_path('default_logos/nothing.png'),width:'100%' %>
+<%unless @timeline_posts.nil?%>
+	<%unless @timeline_posts.empty?%>
+		<%=paginate @timeline_posts,remote:true%>
+		<%=render 'shared/enablers',enablers:@timeline_posts%>
+		<%=paginate @timeline_posts,remote:true%>
+	<%else%>
+		<center><%=image_tag asset_path('default_logos/nothing.png'),width:'100%' %></center>
+	<%end%>
+<%end%>
