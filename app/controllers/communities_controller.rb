@@ -95,7 +95,7 @@ class CommunitiesController < ApplicationController
   end
 
   def posts
-    @posts=[]
+    @timeline_posts = @club.timeline.enablers.page(params[:page]).per(15)
     render partial:"community_router.js.erb",locals:{from: :posts}
   end
 
