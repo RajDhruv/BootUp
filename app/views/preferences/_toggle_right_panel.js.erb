@@ -1,0 +1,10 @@
+<%user_prefs=current_user.preference%>
+<%if user_prefs.display_right_panel%>
+	$('#main_timeline_view').removeClass('col-md-12');
+	$('#main_timeline_view').addClass('col-md-8');
+	$('#user_right_panel_section').show();
+<%else%>
+	$('#main_timeline_view').removeClass('col-md-8');
+	$('#main_timeline_view').addClass('col-md-12');
+	$('#user_right_panel_section').hide();
+<%end%>

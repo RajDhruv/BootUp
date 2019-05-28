@@ -5,8 +5,13 @@ class PreferencesController < ApplicationController
   end
 
   def toggle_background_image
-  	current_user.preference.toggle_background_image
-  	render partial: 'toggle_background_image.js.erb'
+    current_user.preference.toggle_background_image
+    render partial: 'toggle_background_image.js.erb'
+  end
+
+  def toggle_right_panel
+  	current_user.preference.toggle_right_panel
+  	render partial: 'toggle_right_panel.js.erb'
   end
 
   def set_background_image

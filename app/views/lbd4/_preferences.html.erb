@@ -15,6 +15,14 @@
             url: domain_name+"/preferences/toggle_background_image"
         })
     }
+    function toggle_right_panel()
+    {
+        domain_name=window.location.origin;
+        $.ajax({
+            type:"get",
+            url: domain_name+"/preferences/toggle_right_panel"
+        })
+    }
     function set_background_image(asset_name)
     {
         domain_name=window.location.origin;
@@ -37,6 +45,16 @@
                     <p>Background Image</p>
                     <label class="switch">
                         <input type="checkbox" data-toggle="switch" <%="checked" if !user_prefs.display_panel_image.nil? and user_prefs.display_panel_image%> data-on-color="primary" data-off-color="primary" onclick="toggle_background_image();">
+                        <span class="toggle"></span>
+                    </label>
+                    <div class="clearfix"></div>
+                </a>
+            </li>
+            <li class="adjustments-line">
+                <a href="javascript:void(0)" class="switch-trigger">
+                    <p>Right Panel Show</p>
+                    <label class="switch">
+                        <input type="checkbox" data-toggle="switch" <%="checked" if !user_prefs.display_right_panel.nil? and user_prefs.display_right_panel%> data-on-color="primary" data-off-color="primary" onclick="toggle_right_panel();">
                         <span class="toggle"></span>
                     </label>
                     <div class="clearfix"></div>

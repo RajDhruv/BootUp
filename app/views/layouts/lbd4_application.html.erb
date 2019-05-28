@@ -23,6 +23,7 @@
       }
     </style>
     <div class="wrapper">
+    <%user_prefs=current_user.preference%>
         <%=render 'lbd4/sidebar'%>
         <div class="main-panel">
             <!-- fixed plugin  -->
@@ -41,7 +42,8 @@
                         </center>
                       <%end%>
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class=<%=user_prefs.display_right_panel ? "col-md-8" : "col-md-12"%> style="-webkit-transition: width 2s; /* Safari */
+  transition: width 2s;" id="main_timeline_view">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title" id="view_id"></h4>
@@ -56,7 +58,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4" id="user_right_panel_section" style="<%=user_prefs.display_right_panel ? 'display:block' : 'display:none'%>;-webkit-transition: width 2s;transition: width 2s;">
                             <div class="card card-user" style="">
                                 <%=render 'lbd4/user_details'%>
                             </div>

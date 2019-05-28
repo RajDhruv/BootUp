@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_27_204643) do
+ActiveRecord::Schema.define(version: 2019_05_28_195227) do
 
   create_table "chatroom_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "chatroom_id"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 2019_05_27_204643) do
     t.datetime "updated_at", null: false
     t.boolean "display_panel_image"
     t.string "image_selected"
+    t.boolean "display_right_panel"
     t.index ["user_id"], name: "index_preferences_on_user_id"
   end
 

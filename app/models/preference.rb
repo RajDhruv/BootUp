@@ -13,13 +13,21 @@ class Preference < ApplicationRecord
   	self.panel_color=[0,1,2,3,4,5].sample
   	self.image_selected = ['sidebar-1.jpg','sidebar-2.jpg','sidebar-3.jpg','sidebar-4.jpg','sidebar-5.jpg'].sample
     self.display_panel_image = true
+    self.display_right_panel = true
   end
   
   def toggle_background_image
-  	if self.display_panel_image.nil?
-  		self.display_panel_image = false
+    if self.display_panel_image.nil?
+      self.display_panel_image = false
+    end
+    self.update_attribute("display_panel_image",!(self.display_panel_image))
+  end
+
+  def toggle_right_panel
+  	if self.display_right_panel.nil?
+  		self.display_right_panel = false
   	end
-  	self.update_attribute("display_panel_image",!(self.display_panel_image))
+  	self.update_attribute("display_right_panel",!(self.display_right_panel))
   end
 
   def set_background_image(asset_name)
