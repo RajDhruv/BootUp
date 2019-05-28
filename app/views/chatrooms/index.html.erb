@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<%=link_to "Logout",destroy_user_session_path,method: :delete,class:"btn btn-outline-danger" if current_user%>
+<br>
+<table id="chatroom_listing_headers">
+<tr>
+<td style="width: 49%" align="center" class="header_active"><%= link_to '<span>Chatrooms</span>'.html_safe, chatrooms_path, method: :get, remote: true,class: "chatrooms_list_links",onclick: "$('#chatroom_listing_headers').find('td').removeClass('header_active');$(this).parent('td').addClass('header_active');"%></td><td style="width: 2%" align="center"><b>|</b></td><td style="width: 49%" align="center"><%= link_to '<span>Users</span>'.html_safe, all_users_chatrooms_path, method: :get, remote: true,class: "chatrooms_list_links",onclick: "$('#chatroom_listing_headers').find('td').removeClass('header_active');$(this).parent('td').addClass('header_active');"%></td>
+</tr>
+</table>
+<br>
+<div id="chatrooms">
+<center>
+<table style="width:90%">
+  <thead>
+    <tr>
+      <th style="width:85%"></th>
+      <th colspan="3" style="width:15%"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @chatrooms.each do |chatroom| %>
+      <tr>
+        <td><%= link_to "#{chatroom.name}", chatroom_chatroom_users_path(chatroom), method: :post ,class: 'chatrooms_list_links_leftpanel'%></td>
+        <%if chatroom.created_by==current_user.id%>
+          <td><%= link_to "<img src='#{asset_path('edit.png')}' height='18' width='18' title='Edit' alt='Edit'>".html_safe, edit_chatroom_path(chatroom) %></td>
+          <td>&nbsp;</td>
+          <td><%= link_to "<img src='#{asset_path('delete.png')}' height='18' width='18' title='Delete' alt='Delete'>".html_safe, chatroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%else%>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</center>
+</div>
+<br>
+
+

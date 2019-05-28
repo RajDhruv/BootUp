@@ -1,0 +1,12 @@
+		<div class="d-flex justify-content-start mb-4 justify-content-<%=message.user.id%>">
+		<!-- <div class="img_cont_msg">
+		<img src="https://devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg" class="rounded-circle user_img_msg">
+			</div> -->
+			<div class="msg_cotainer msg_cotainer_<%=message.user.id%>">
+				<strong><%= message.user.username%>:</strong><%=message.body%>
+				<span class="msg_time msg_time_<%=message.user.id%>"><%=message.created_at.strftime("%d-%m-%y %H:%M")%></span>
+			</div>
+		</div>
+<script>
+	$('#chatroom_panel_<%=message.chatroom.id%>').animate({ scrollTop: $('#chatroom_panel_<%=message.chatroom.id%>').prop("scrollHeight")}, 500);
+</script>

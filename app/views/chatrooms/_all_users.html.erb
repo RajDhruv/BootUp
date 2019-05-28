@@ -1,0 +1,18 @@
+<center>
+<table style="width:90%">
+  <thead>
+    <tr>
+      <th style="width:85%"></th>
+      <th style="width:15%"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to "#{user.username}", get_users_chatroom_chatrooms_path(user_id: user.id), method: :post ,class: 'chatrooms_list_links_leftpanel'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</center>

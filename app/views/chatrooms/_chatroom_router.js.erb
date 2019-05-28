@@ -1,0 +1,8 @@
+<%case from%>
+<%when :index%>
+	$("#chatrooms").html("<%=j render partial:'index'%>");
+<%when :all_users%>
+	$("#chatrooms").html("<%=j render partial:'all_users'%>");
+<%when :show%>
+	$("#main-timeline").html("<%=j render partial:'show'%>");
+<%end%>
