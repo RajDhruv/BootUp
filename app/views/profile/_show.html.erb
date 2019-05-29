@@ -28,7 +28,7 @@
     <span>
         <div class="btn-group dropdown">
           <button type="button" class="btn btn-outline-secondary disabled">
-            Action
+            <%= my_profile ? "Post" : "Action"%>
           </button>
           <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropright</span>
@@ -43,6 +43,7 @@
                 <%= render 'after_friend_action_buttons'%>
               <%end%>
             <%else%>
+                <%= render 'new_post'%>
             <%end%>
             </span>
             
