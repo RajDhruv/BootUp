@@ -1,0 +1,17 @@
+<%=form_for blog,url:{action: action},remote: true do |f|%>
+	<div class="form-group">
+		<%=f.label :title%>
+		<%=f.text_field :title,class:"form-control"%>
+	</div>
+	<div class="form-group">
+		<%=f.label :description%>
+		<%=f.cktext_area :description,class:"form-control"%>
+	</div>			
+		<%=f.submit action==:create ? "Create" : "Update" ,class:"btn btn-outline-success",onclick:"return validate();"%>
+<%end%>
+
+<script type="text/javascript">
+	function validate(){
+		return true;
+	}
+</script>

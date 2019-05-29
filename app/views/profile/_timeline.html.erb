@@ -1,9 +1,15 @@
+<div id="form_title">
+</div>
+<div id="timeline_form">
+</div>
+<div id="timeline_viewport">
 <%unless @timeline_posts.nil?%>
 	<%unless @timeline_posts.empty?%>
 		<%=paginate @timeline_posts,remote:true%>
 		<%=render 'shared/enablers',enablers:@timeline_posts%>
 		<%=paginate @timeline_posts,remote:true%>
 	<%else%>
-		<center><%=image_tag asset_path('default_logos/nothing.png'),width:'100%' %></center>
+		<center><%=image_tag asset_path('default_logos/nothing.png'),width:'100%',id:"empty_timeline_view" %></center>
 	<%end%>
 <%end%>
+</div>

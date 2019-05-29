@@ -6,7 +6,7 @@ class Enabler < ApplicationRecord
 	scope :clubs_posts,->(user){where(timeline:Timeline.where(club:user.clubs))}
 	scope :all_enablers, ->(user) { friends_posts(u).or(clubs_posts(u)) }
 	def name
-		self.enable.name rescue "No Name"
+		self.enable.title rescue "No Name"
 	end
 
 

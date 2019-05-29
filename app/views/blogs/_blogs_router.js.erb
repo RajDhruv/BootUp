@@ -1,0 +1,25 @@
+<%if notice%>
+	new Noty({
+		timeout: 1000,
+		type: '<%=type rescue "success"%>',
+		layout: 'topCenter',
+		text: '<%=notice%>'
+	}).show();
+<%end%>
+<%case from%>
+<%when :new%>
+	$("#form_title").html("Create Blog");
+	$("#timeline_form").html("<%=j render partial:'form',locals:{blog:@blog,action: :create}%>");
+<%when :create%>
+	$("#form_title").html("");
+	$("#timeline_form").html("");
+	if($('#empty_timeline_view').length>0)
+	{
+		$('#timeline_viewport').html("<%=j render partial:'blog_timeline_view',locals:{blog:@blog}%>");
+	}
+	else
+	{
+		$('#timeline_viewport').prepend("<%=j render partial:'blog_timeline_view',locals:{blog:@blog}%>");
+	}
+<%end%>
+<%=render 'notifications/notification_panel'%>

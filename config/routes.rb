@@ -64,6 +64,9 @@ end
 		  get 'set_background_image'
 		end
 	end
+
+	resources :blogs do
+	end
 	
 	resources :chatrooms do
 		resource :chatroom_users

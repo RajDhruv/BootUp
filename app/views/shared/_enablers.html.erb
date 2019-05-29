@@ -1,3 +1,6 @@
 <%enablers.each do |enabler|%>
-	<%=enabler.name%>
+	<%case enabler.enable.class.to_s%>
+	<%when 'Blog'%>
+		<%=render partial:'blogs/blog_timeline_view',locals:{blog:enabler.enable}%>
+	<%end%>
 <%end%>
