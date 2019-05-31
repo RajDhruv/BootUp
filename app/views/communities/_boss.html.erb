@@ -1,7 +1,13 @@
+
+	<%=@club.description.html_safe%>
+	<hr>
 	<h2>Owner</h2>
 	<%=render '/shared/user',user:@boss%>
+	
+	<%unless @admins.empty?%>
 	<hr>
 	<h4>Admins</h4>
 	<%@admins.each do |admin|%>
 	<%=render '/shared/user',user:admin%>
+	<%end%>
 	<%end%>
