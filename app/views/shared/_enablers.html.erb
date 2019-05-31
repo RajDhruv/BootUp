@@ -1,10 +1,7 @@
-<div class="row">
+
 	<%enablers.each do |enabler|%>
-		<div class="col col-md-6">
 			<%case enabler.enable.class.to_s%>
 			<%when 'Blog'%>
 				<%=render partial:'blogs/blog_timeline_view',locals:{blog:enabler.enable}%>
 			<%end%>
-		</div>
 	<%end%>
-</div>
