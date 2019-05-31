@@ -2,7 +2,7 @@
 </div>
 <div id="timeline_form">
 </div>
-<div id="timeline_viewport">
+<div class="row" id="timeline_viewport">
 <%unless @timeline_posts.nil?%>
 	<%unless @timeline_posts.empty?%>
 		<%=paginate @timeline_posts,remote:true%>
