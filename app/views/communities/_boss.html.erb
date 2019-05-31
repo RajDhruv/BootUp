@@ -1,5 +1,8 @@
-
-	<%=@club.description.html_safe%>
+	<div class="card">
+		<div class="card-body">
+			<%=@club.description.html_safe%>
+		</div>
+	</div>
 	<hr>
 	<h2>Owner</h2>
 	<%=render '/shared/user',user:@boss%>

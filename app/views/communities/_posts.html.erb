@@ -1,3 +1,23 @@
+<br>
+<center>	
+	<div class="btn-group dropdown">
+		<button type="button" class="btn btn-outline-secondary disabled">
+			New
+		</button>
+		<button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	            <span class="sr-only">Toggle Dropright</span>
+	          </button>
+
+		<div class="dropdown-menu">
+		<%= render 'shared/new_post'%>
+		</div>
+	</div>
+</center>
+<br>
+<div id="form_title">
+</div>
+<div id="timeline_form">
+</div>
 <%unless @timeline_posts.nil?%>
 	<%unless @timeline_posts.empty?%>
 		<%=paginate @timeline_posts,remote:true%>

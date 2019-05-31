@@ -55,7 +55,8 @@ class CommunitiesController < ApplicationController
     #TODO need to make this ajax
    
     if @club.users.include?(current_user) || @club.owner_is == current_user
-      @timeline_posts = @club.timeline.enablers.page(params[:page]).per(15)
+      @timeline = @club.timeline
+      @timeline_posts = @timeline.enablers.page(params[:page]).per(15)
       render partial:"community_router.js.erb",locals:{from: :show}
     else
       render partial:"community_router.js.erb",locals:{from: :not_allowoed,notice: "You are not a member of #{@club.name} a private club",type:"error"}
@@ -95,7 +96,8 @@ class CommunitiesController < ApplicationController
   end
 
   def posts
-    @timeline_posts = @club.timeline.enablers.page(params[:page]).per(15)
+    @timeline = @club.timeline
+    @timeline_posts = @timeline.enablers.page(params[:page]).per(15)
     render partial:"community_router.js.erb",locals:{from: :posts}
   end
 
