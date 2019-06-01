@@ -29,6 +29,7 @@
 	$("#timeline_form").html("");
 	$("#blog_<%=@blog.id%>").html("<%=j render 'blog_body',blog:@blog%>");
 <%when :show%>
-	$("#blog_<%=@blog.id%>").parent().html("<%=j render 'show',blog:@blog%>");
+	$("#post_viewport").html("<%=j render 'show',blog:@blog%>");
+	$('#timeline_viewport').hide();
 <%end%>
 <%=render 'notifications/notification_panel'%>

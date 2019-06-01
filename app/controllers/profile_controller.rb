@@ -18,8 +18,7 @@ class ProfileController < ApplicationController
 
   def show
     if current_user == @user || current_user.friends.include?(@user)
-      @timeline=@user.timeline
-      @timeline_posts = Enabler.where(timeline: @timeline).order('created_at desc').page(params[:page]).per(15)
+      populate_timeline(@user)
     end
     render partial:"router.js.erb",locals:{from: :show}
   end
