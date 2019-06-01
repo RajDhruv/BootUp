@@ -1,4 +1,4 @@
-<div class="col-md-6" id="blog_<%=blog.id%>">
+<div class="timeline_post_card <%=current_user.preference.display_right_panel ? 'col-md-12' : 'col-md-6' %>" id="blog_<%=blog.id%>">
 	
 	<%=render 'blogs/blog_body',blog:blog%>
 	

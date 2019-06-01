@@ -3,8 +3,10 @@
 	$('#main_timeline_view').removeClass('col-md-12');
 	$('#main_timeline_view').addClass('col-md-8');
 	$('#user_right_panel_section').show();
+	$('.timeline_post_card').removeClass('col-md-6').addClass('col-md-12');
 <%else%>
 	$('#main_timeline_view').removeClass('col-md-8');
 	$('#main_timeline_view').addClass('col-md-12');
 	$('#user_right_panel_section').hide();
+	$('.timeline_post_card').removeClass('col-md-12').addClass('col-md-6');
 <%end%>
