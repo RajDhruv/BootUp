@@ -30,6 +30,7 @@ class BlogsController < ApplicationController
   end
 
   def show
+    render partial: 'blogs_router.js.erb', locals:{from: :show}
   end
 
   private

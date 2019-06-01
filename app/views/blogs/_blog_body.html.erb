@@ -1,3 +1,4 @@
+<div class="card" style="padding: 30px;">
 <div class="card-body">
 	<h5 class="card-title"><%=blog.title%></h5>
 	<h6 class="card-subtitle mb-2 text-muted"><%=blog.enabler.author.name%></h6>
@@ -6,4 +7,5 @@
 	<%=link_to "Edit", edit_blog_path(blog),class:"card-link",remote: true%>
 	<%end%>
 	<%=link_to "Open", blog_path(blog),class:"card-link",remote: true%>
+</div>
 </div>
