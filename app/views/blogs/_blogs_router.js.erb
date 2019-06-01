@@ -21,5 +21,12 @@
 	{
 		$('#timeline_viewport').prepend("<%=j render partial:'blog_timeline_view',locals:{blog:@blog}%>");
 	}
+<%when :edit%>
+	$("#form_title").html("Edit Blog");
+	$("#timeline_form").html("<%=j render partial:'form',locals:{blog:@blog,action: :update}%>");
+<%when :update%>
+	$("#form_title").html("");
+	$("#timeline_form").html("");
+	$("#blog_<%=@blog.id%>").html("<%=j render 'blog_body',blog:@blog%>");
 <%end%>
 <%=render 'notifications/notification_panel'%>

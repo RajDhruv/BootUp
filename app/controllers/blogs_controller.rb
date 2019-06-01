@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:edit,:update,:delete,:show]
-  before_action :set_timeline, only: [:new,:create,:edit,:update]
+  before_action :set_timeline, only: [:new,:create]
 
   def new
     @blog=Blog.new
@@ -16,9 +16,14 @@ class BlogsController < ApplicationController
   end
 
   def edit
+    @timeline=@blog.enabler.timeline
+    render partial: 'blogs_router.js.erb', locals:{from: :edit}
   end
 
   def update
+    @blog.update(blog_params)
+    render partial:"blogs_router.js.erb",locals:{from: :update,notice:"Blog '#{@blog.title}' Updated",type:"warning"}
+
   end
 
   def delete
