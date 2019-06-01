@@ -2,7 +2,9 @@
 <div class="card-body">
 	<h5 class="card-title"><%=blog.title%></h5>
 	<h6 class="card-subtitle mb-2 text-muted"><%=blog.enabler.author.name%></h6>
-	<p class="card-text"><%=blog.description.html_safe%></p>
+	<hr>
+	<div class="card-text" style=" padding: 0 0 0px 25px;"><%=blog.description.html_safe%></div>
+	<hr>
 	<%if blog.enabler.author == current_user %>
 	<%=link_to "Edit", edit_blog_path(blog),class:"card-link",remote: true%>
 	<%end%>
