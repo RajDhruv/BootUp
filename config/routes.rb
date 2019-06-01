@@ -1,5 +1,8 @@
  Rails.application.routes.draw do
-
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.roles.include? :admin } do
+  	mount Sidekiq::Web => '/sidekiq'
+  end
   mount Ckeditor::Engine => '/ckeditor'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 resources :notifications,except: [:new, :create, :edit, :update, :destroy, :show] do 

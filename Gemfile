@@ -18,6 +18,7 @@ gem 'rails_admin', '~> 1.3'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 gem 'platipus', '~> 0.1.0'
+gem 'sidekiq', '~> 4.1', '>= 4.1.2'
 gem 'custom_loader', '~> 0.2.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
