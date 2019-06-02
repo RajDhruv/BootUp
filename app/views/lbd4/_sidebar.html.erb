@@ -2,24 +2,17 @@
 image_name=user_prefs.image_selected
 image_name||=""%>
 <div class="sidebar" data-image="<%=(!user_prefs.display_panel_image.nil? and user_prefs.display_panel_image and !image_name.empty?) ? image_url("sidebars/#{image_name}") : ''%>" data-color="<%=user_prefs.panel_color%>">
-    <!--
-Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-Tip 2: you can also add an image using data-image tag
--->
+    
     <div class="sidebar-wrapper">
         <div class="logo">
             <%=link_to "BootUp",root_path,class:"simple-text",remote:true%>
         </div>
         <ul class="nav master_navs">
             <li>
-                <%=link_to '<i class="nc-icon nc-album-2"></i><p>Timeline</p>'.html_safe,profile_path(current_user),class:"nav-link",id:"timeline_nav",remote: true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Loading Clubs',text_color: 'gold').html_safe%>
+                <%=link_to '<i class="nc-icon nc-album-2"></i><p>Timeline</p>'.html_safe,profile_path(current_user),class:"nav-link",id:"timeline_nav",remote: true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Loading Timeline',text_color: 'gold').html_safe%>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./user.html">
-                    <i class="nc-icon nc-paper-2"></i>
-                    <p>News Feed</p>
-                </a>
+                <%=link_to '<i class="nc-icon nc-paper-2"></i><p>News Feed</p>'.html_safe,news_path,class:"nav-link",id:"timeline_nav",remote: true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Loading News',text_color: 'gold').html_safe%>
             </li>
             <li class="nav-item">
             <%=link_to '<i class="nc-icon nc-vector"></i><p>Clubs</p>'.html_safe,communities_path,class:"nav-link",id:"communities_nav",remote: true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Loading Clubs',text_color: 'gold').html_safe%>
@@ -29,12 +22,12 @@ Tip 2: you can also add an image using data-image tag
             <li class="nav-item">
                 <%=link_to '<i class="nc-icon nc-grid-45"></i><p>Friends</p>'.html_safe,friendship_index_path,class:"nav-link",id:"friendship_nav",remote: true,onclick: CustomLoader.custom_loader(element_reference_name: 'main-timeline',reference_type:'id',image_url: asset_path('custom_loader/bouncing_balls.gif'),content: 'Loading Friends',text_color: 'gold').html_safe%>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="./icons.html">
                     <i class="nc-icon nc-vector"></i>
                     <p>Icons</p>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link" href="chatrooms" target="_blank">
                     <i class="nc-icon nc-chat-round"></i>

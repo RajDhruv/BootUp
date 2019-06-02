@@ -96,7 +96,8 @@ class User < ApplicationRecord
   end
 
   def subscribed_timeline
-    self.friends.includes(:timeline).collect{|x| x.timeline.id} + self.clubs.includes(:timeline).collect{|x| x.timeline.id}
+    result = self.friends.includes(:timeline).collect{|x| x.timeline.id} + self.clubs.includes(:timeline).collect{|x| x.timeline.id}
+    result << self.timeline.id
   end
 
   # includes syntax
