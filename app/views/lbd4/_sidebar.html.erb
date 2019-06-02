@@ -35,10 +35,7 @@ image_name||=""%>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./notifications.html">
-                    <i class="nc-icon nc-bell-55"></i>
-                    <p>Notifications</p>
-                </a>
+                <%=link_to '<i class="nc-icon nc-bell-55"></i><p>Notifications</p>'.html_safe,notifications_path,class:'dropdown-item',remote: true,class:"nav-link"%>
             </li>
         </ul>
         <ul class="nav">
