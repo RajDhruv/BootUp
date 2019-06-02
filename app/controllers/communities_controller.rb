@@ -1,6 +1,6 @@
 class CommunitiesController < ApplicationController
   layout "lbd4_application"
-  before_action :set_club, only: [:show,:join_public,:edit,:update,:destroy,:ask_private,:approve_invite,:posts,:members,:boss,:invitations]
+  before_action :set_club, only: [:show,:join_public,:edit,:update,:destroy,:ask_private,:approve_invite,:posts,:members,:boss,:invitations,:toggle_club_admin]
   def index
   	@my_clubs=current_user.clubs.page(params[:page]).per(10)
     respond_to do |format|
@@ -112,6 +112,12 @@ class CommunitiesController < ApplicationController
   def invitations
     @invitations = @club.invitations.pending.page(params[:page]).per(10)
     render partial:"community_router.js.erb",locals:{from: :invitations}
+  end
+
+  def toggle_club_admin
+    user=User.find_by_id(params[:user_id])
+    @club.toggle_club_admin(user)
+    render :nothing=>true
   end
 
   private

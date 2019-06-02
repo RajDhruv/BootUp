@@ -1,5 +1,6 @@
+<%owner_view = @club.owner==current_user.id%>
 <%= paginate @members, :remote => true %>
 <%@members.each do |member|%>
-<%=render '/shared/user',user:member%>
+<%=render '/shared/user',user:member,owner_view:owner_view %>
 <%end%>
 <%= paginate @members, :remote => true %>

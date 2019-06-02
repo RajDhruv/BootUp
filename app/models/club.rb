@@ -30,6 +30,14 @@ class Club < ApplicationRecord
 		return self.invitations.where(requester:user,status:0).any?
 	end
 
+	def toggle_club_admin(user)
+		if self.has_admin?(user)
+			ClubAdmin.where(club:self,admin:user).last.destroy
+		else
+			ClubAdmin.create(club:self,admin:user)
+		end
+	end
+
 	def notification_links(notification)
 		message = "#{notification.actor.display_name} #{notification.action} in #{notification.notifiable.name}"
 		path = community_path(self)
