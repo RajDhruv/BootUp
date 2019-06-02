@@ -4,7 +4,7 @@
 	<hr>
 	<div class="card-text" style=" padding: 0 0 0px 25px;"><%=blog.description.html_safe%></div>
 	<hr>
-	<%if blog.enabler.author == current_user %>
+	<%if moderate_post_permission(blog,@timeline) %>
 	<%=link_to "Edit", edit_blog_path(blog),class:"card-link",remote: true%>
 	<%end%>
 	<%=link_to "Open", blog_path(blog),class:"card-link",remote: true%>

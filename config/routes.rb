@@ -34,6 +34,7 @@
 			get 'public',to:'communities#public'
 			get 'private',to:'communities#private_club'
 			get 'owned',to:'communities#owned_club'
+			post 'toggle_club_admin'
 		end
 		member do 
 			post 'join',to:'communities#join_public'
