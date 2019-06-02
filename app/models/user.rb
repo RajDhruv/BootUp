@@ -95,6 +95,10 @@ class User < ApplicationRecord
     return message,path
   end
 
+  def subscribed_timeline
+    self.friends.includes(:timeline).collect{|x| x.timeline.id} + self.clubs.includes(:timeline).collect{|x| x.timeline.id}
+  end
+
   # includes syntax
   #User.all.includes(:timeline,:preference,{profile: :images},{clubs: :users},{sent_notifications: :recipient})
 
