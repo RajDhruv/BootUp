@@ -32,7 +32,7 @@ class Club < ApplicationRecord
 	end
 
 	def notification_links(notification)
-		message = "#{notification.actor.display_name} #{notification.action} #{notification.notifiable.name}"
+		message = "#{notification.actor.display_name} #{notification.action} in #{notification.notifiable.name}"
 		path = community_path(self)
 		return message,path
 	end
