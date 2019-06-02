@@ -1,7 +1,11 @@
 
 	<%enablers.each do |enabler|%>
+		<div class="timeline_post_card <%=current_user.preference.display_right_panel ? 'col-md-12' : 'col-md-6' %>" id="blog_<%=enabler.enable.id%>">
+		<label style="padding: 20px;"><%=enabler.author.name%>&nbsp;<%= enabler.timeline.timeable.class.to_s == 'Club' ? "> #{enabler.timeline.timeable.name}" : ""%></label>
 			<%case enabler.enable.class.to_s%>
 			<%when 'Blog'%>
-				<%=render partial:'blogs/blog_timeline_view',locals:{blog:enabler.enable}%>
+				<%=render partial:'blogs/blog_body',locals:{blog:enabler.enable}%>
 			<%end%>
+		</div>
+			<hr>
 	<%end%>
