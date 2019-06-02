@@ -95,8 +95,16 @@ class User < ApplicationRecord
     return message,path
   end
 
-  #TODO make a preference model that will store the persistence
   # includes syntax
   #User.all.includes(:timeline,:preference,{profile: :images},{clubs: :users},{sent_notifications: :recipient})
 
 end
+
+#TODO an option to the owner to choose admins
+#TODO admins to be able to moderate posts
+#TODO of owner or admin make a post inactive then notification to the post owner
+#TODO cover pic upload
+#TODO Cover UI
+#TODO Apply indentation to CKEDITOR List
+
+

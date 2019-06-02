@@ -52,8 +52,6 @@ class CommunitiesController < ApplicationController
   end
 
   def show
-    #TODO need to make this ajax
-   
     if @club.users.include?(current_user) || @club.owner_is == current_user
       populate_timeline(@club)
       render partial:"community_router.js.erb",locals:{from: :show}
@@ -123,8 +121,7 @@ class CommunitiesController < ApplicationController
   end
 
   def set_club
-    #TODO SECURITY : currently we allow only access to open the club through AJAX but if somehow the user has the Clubs ID he may still open the club. We need to prevent that.
-  	@club=Club.find_by_id(params[:id])
+    @club=Club.find_by_id(params[:id])
   end
 
 end
