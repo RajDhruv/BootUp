@@ -1,4 +1,4 @@
 class Like < ApplicationRecord
   belongs_to :user
-  belongs_to :liked,polymorphic: true,dependent: :destroy
+  belongs_to :liked,polymorphic: true
 end

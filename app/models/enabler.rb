@@ -3,7 +3,7 @@ class Enabler < ApplicationRecord
 	belongs_to :timeline
 	belongs_to :author,class_name:'User'
 	has_many :comments,as: :commentable
-	has_many :likes,as: :liked
+	has_many :likes,as: :liked,dependent: :destroy
 	after_create :send_notifications
 	scope :news_feed,->(user){where(timeline:user.subscribed_timeline)}
 	def name
