@@ -1,5 +1,6 @@
 class Club < ApplicationRecord
 	#this model deals with the group logic in the name of club
+	serialize :description
 	has_one :timeline,as: :timeable,dependent: :destroy
 	has_and_belongs_to_many :users
 	has_many :notification_subject,class_name:'Notification',as: :notifiable

@@ -24,6 +24,7 @@
 <%when :edit%>
 	$("#form_title").html("Edit Blog");
 	$("#timeline_form").html("<%=j render partial:'form',locals:{blog:@blog,action: :update}%>");
+	$('#timeline_form').attr("tabindex",-1).focus();
 <%when :update%>
 	$("#form_title").html("");
 	$("#timeline_form").html("");
