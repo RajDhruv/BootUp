@@ -1,5 +1,5 @@
 class Enabler < ApplicationRecord
-	belongs_to :enable,polymorphic:true
+	belongs_to :enable,polymorphic:true,dependent: :destroy
 	belongs_to :timeline
 	belongs_to :author,class_name:'User'
 	has_many :comments,as: :commentable,dependent: :destroy
