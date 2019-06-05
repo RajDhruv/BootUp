@@ -2,7 +2,7 @@ class Enabler < ApplicationRecord
 	belongs_to :enable,polymorphic:true
 	belongs_to :timeline
 	belongs_to :author,class_name:'User'
-	has_many :comments,as: :commentable
+	has_many :comments,as: :commentable,dependent: :destroy
 	has_many :likes,as: :liked,dependent: :destroy
 	after_create :send_notifications
 	scope :news_feed,->(user){where(timeline:user.subscribed_timeline)}
