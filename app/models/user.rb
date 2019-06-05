@@ -28,6 +28,7 @@ class User < ApplicationRecord
   has_many :chatrooms, through: :chatroom_users
   has_many :messages
   has_many :likes
+  has_many :comments,foreign_key: :author_id
   has_many :liked_enablers,through: :likes,source: :liked,source_type: 'Enabler'
   has_many :liked_comments,through: :likes,source: :liked,source_type: 'Comment'
   after_create :create_profile, :create_preference,:create_timeline
