@@ -1,21 +1,32 @@
 
-	<%enablers.each do |enabler|%>
-		<div class="timeline_post_card <%=current_user.preference.display_right_panel ? 'col-md-12' : 'col-md-6' %>" id="blog_<%=enabler.enable.id%>">
-		
-		<label style="padding: 10px;">
-			<%= link_to enabler.author.name,profile_path(enabler.author),remote: true%>
-			&nbsp;
-			
-			<% if enabler.timeline.timeable.class.to_s == 'Club'%>
-			>
-			&nbsp;
-			<%= link_to "#{enabler.timeline.timeable.name}",community_path(enabler.timeline.timeable.id),remote: true%>
-			<%end%>
-		</label>
-			<%case enabler.enable.class.to_s%>
-			<%when 'Blog'%>
-				<%=render partial:'blogs/blog_body',locals:{blog:enabler.enable}%>
-			<%end%>
+<%enablers.each do |enabler|%>
+	<%enabler_obj=enabler.enable%>
+	<div class="timeline_post_card <%=current_user.preference.display_right_panel ? 'col-md-12' : 'col-md-6' %>" id="<%=enabler_obj.class.name.downcase%>_<%=enabler_obj.id%>">
+		<div class="card" style="padding: 30px;">
+			<div class="card-body">
+				<div style="padding: 0 0 15px 0px;">
+				<img id="profile_picture" class="" src="<%=profile_display_image(enabler.author)%>" alt="..." height="44" width="44" style="background-image:url('<%=asset_path('default_logos/default_profile.png')%>');background-repeat: no-repeat;border-radius: 50%"/>
+				<label style="vertical-align: text-bottom;padding: 10px;">
+					<%= link_to enabler.author.name,profile_path(enabler.author),remote: true%>
+					&nbsp;
+					
+					<% if enabler.timeline.timeable.class.to_s == 'Club'%>
+					>
+					&nbsp;
+					<%= link_to "#{enabler.timeline.timeable.name}",community_path(enabler.timeline.timeable.id),remote: true%>
+					<%end%>
+				</label>
+				</div>
+					<%case enabler_obj.class.to_s%>
+					<%when 'Blog'%>
+						<%=render partial:'blogs/blog_body',locals:{blog:enabler_obj}%>
+					<%end%>
+				<%if moderate_post_permission(enabler_obj,enabler.timeline) %>
+					<%=link_to "Edit", edit_blog_path(enabler_obj),class:"card-link",remote: true%>
+				<%end%>
+				<%=link_to "Open", blog_path(enabler_obj),class:"card-link",remote: true%>
+			</div>
 		</div>
-			<hr>
-	<%end%>
+	</div>
+	<hr>
+<%end%>
