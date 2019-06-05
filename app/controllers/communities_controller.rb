@@ -33,6 +33,7 @@ class CommunitiesController < ApplicationController
   	@club=Club.new(club_params)
   	@club.owner=current_user.id
   	@club.save
+    @timeline=@club.reload.timeline
   	render partial:"community_router.js.erb",locals:{from: :create,notice:"Club Created",type:"success"}
   end
 
