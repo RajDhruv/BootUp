@@ -10,16 +10,25 @@ $("#edit_profile_message").click();
 <%when :update_bio%>
 $('#user_bio').html("<i><b>\"</b><span onclick='edit_bio()' style='cursor: pointer'><%=current_user.profile.bio%></span><b>\"</b></i>");
 <%when :profile_image_carousel%>
-$('#upload_area').fadeOut();
-$("#upload_area").html("<%=j render partial:'profile_image_carousel'%>");
-$("#upload_area").fadeIn();
-$('#upload_area').css('background-color', 'rgba(128, 128, 128, 0.5)');
+$('#upload_area_profile').fadeOut();
+$("#upload_area_profile").html("<%=j render partial:'profile_image_carousel',locals:{close_corousel_url: close_corousel_url,type: 'profile'}%>");
+$("#upload_area_profile").fadeIn();
+$('#upload_area_profile').css('background-color', 'rgba(128, 128, 128, 0.5)');
 <%when :make_dp%>
 $('#profile_picture').attr("src","<%=@image.location.to_s%>");
 <%when :image%>
 $('#profile_picture').attr("src","<%=@image.location.to_s%>");
 <%when :close_carousel%>
-$('#profile_pic_dropzone').html("<%=j render partial:'shared/dropzone',locals:{url: image_upload_profile_index_path.to_s}%>");
+$('#<%=type%>_pic_dropzone').html("<%=j render partial:'shared/dropzone',locals:{url: url, type: type , close_corousel_url: close_corousel_url, image_count: image_count, profile_carousel_url: profile_carousel_url}%>");
+<%when :cover_image_carousel%>
+$("#upload_area_cover").fadeOut();
+$("#upload_area_cover").html("<%=j render partial:'profile_image_carousel',locals:{close_corousel_url: close_corousel_url,type: 'cover'}%>");
+$("#upload_area_cover").fadeIn();
+$('#upload_area_cover').css('background-color', 'rgba(128, 128, 128, 0.5)');
+<%when :make_cover%>
+$('#cover_picture').attr("src","<%=@image.location.to_s%>");
+<%when :upload_cover_image%>
+$('#cover_picture').attr("src","<%=@image.location.to_s%>");
 <%when :update%>
 location.reload();
 <%end%>

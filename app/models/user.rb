@@ -72,8 +72,18 @@ class User < ApplicationRecord
     self.profile.images
   end
 
+  def cover_images
+    self.profile.cover_pic.images
+  end
+
   def profile_image
     all_images=self.profile.images
+    latest_image=all_images.select{|x| x if x.latest}.last
+    latest_image.location.url rescue ""
+  end
+
+  def cover_image
+    all_images=self.profile.cover_pic.images rescue []
     latest_image=all_images.select{|x| x if x.latest}.last
     latest_image.location.url rescue ""
   end
@@ -87,6 +97,10 @@ class User < ApplicationRecord
 
   def image_count
     self.profile.images.count
+  end
+
+  def cover_image_count
+    self.profile.cover_pic.images.count rescue 0
   end
 
   def is_admin_of

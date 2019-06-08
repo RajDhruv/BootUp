@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_02_175348) do
+ActiveRecord::Schema.define(version: 2019_06_08_192643) do
 
   create_table "blogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -82,6 +82,13 @@ ActiveRecord::Schema.define(version: 2019_06_02_175348) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cover_pics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_cover_pics_on_profile_id"
   end
 
   create_table "enablers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -211,6 +218,7 @@ ActiveRecord::Schema.define(version: 2019_06_02_175348) do
   add_foreign_key "chatroom_users", "users"
   add_foreign_key "club_admins", "clubs"
   add_foreign_key "club_admins", "users", column: "admin_id"
+  add_foreign_key "cover_pics", "profiles"
   add_foreign_key "invitations", "clubs"
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "chatrooms"

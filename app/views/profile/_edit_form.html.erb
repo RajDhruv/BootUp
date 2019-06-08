@@ -81,7 +81,14 @@
                                     <div class="clearfix"></div>
                                 <%end%>
                             </div>
-
+                            <hr>
+                            <label>Profile Pic </label>
                             <div id="profile_pic_dropzone">
-								<%=render partial:"shared/dropzone",locals:{url: image_upload_profile_index_path.to_s}%>
+								<%=render partial:"shared/dropzone",locals:{url: image_upload_profile_index_path.to_s, type: 'profile' ,close_corousel_url: close_carousel_profile_index_path.to_s, image_count: current_user.image_count, profile_carousel_url: profile_carousel_profile_index_path.to_s, display_latest_image_url: profile_display_image(current_user)}%>
 							</div>
+                            <hr>
+                            <label>Cover Pic </label>
+                            <div id="cover_pic_dropzone">
+                                <%=render partial:"shared/dropzone",locals:{url: cover_image_upload_profile_index_path.to_s, type: 'cover', close_corousel_url: close_carousel_cover_profile_index_path.to_s, image_count: current_user.cover_image_count, profile_carousel_url: cover_carousel_profile_index_path.to_s,  display_latest_image_url: cover_display_image(current_user)}%>
+                            </div>
+                            <hr>

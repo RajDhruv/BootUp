@@ -56,6 +56,10 @@
 		  post "image",as:'image_upload'
 		  get 'close_carousel',as:"close_carousel"
 		  post 'dp/:id',to:'profile#make_dp',as:"make_profile_image"
+		  get "cover_image_carousel",as:"cover_carousel"
+		  post "cover_image",as:'cover_image_upload'
+		  get 'close_carousel_cover',as:"close_carousel_cover"
+		  post 'cover/:id',to:'profile#make_cover',as:"make_cover_image"
 		end
 	end
 

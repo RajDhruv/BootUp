@@ -1,6 +1,6 @@
 
 <script type="text/javascript">
-$("#mydropzone").dropzone({
+$("#mydropzone_<%=type%>").dropzone({
     url: "<%=url%>",
     addRemoveLinks : false,
     maxFilesize: 5,
@@ -10,27 +10,27 @@ $("#mydropzone").dropzone({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
       success: function(file, response){
-       $('#profile_picture').attr("src",file.dataURL);
+       $('#<%=type%>_picture').attr("src",file.dataURL);
        $.ajax({
        	type:"get",
-       	url:"<%=close_carousel_profile_index_path%>"
+       	url:"<%=close_corousel_url%>"
        })
     }
 }).html("<div class='dz-default dz-message'><span><span class='deboss'>Drag and Drop File Here </span>/ <span class='dz-clickable' id='browsebtn'>Browse</span></span></div>");
-$('#mydropzone').addClass("dropzone");
+$('#mydropzone_<%=type%>').addClass("dropzone");
 
 </script>
 
-<div class="logowrp clearfix" id="upload_area">
+<div class="logowrp clearfix" id="upload_area_<%=type%>">
 
 	<div class="pull-left logowrpLeft">
 	 <div class="pull-left" > 
-	 	<img src="<%=profile_display_image(current_user)%>" height="59" width="59">
+	 <%latest_image_url=type=="profile" ? profile_display_image(current_user) : cover_display_image(current_user)%>
+	 	<img src="<%=latest_image_url%>" height="59" width="59">
 	 </div>
 		<div class="logowrpLefttext">
-			<%image_count=current_user.image_count%>
 			<%if image_count>1%>
-				<%=link_to "+#{image_count-1}",profile_carousel_profile_index_path,remote:true%>
+				<%=link_to "+#{image_count-1}",profile_carousel_url,remote:true%>
 			<%end%>		
 		</div>
 		<div class="Logodivider">OR</div>
@@ -38,7 +38,7 @@ $('#mydropzone').addClass("dropzone");
 	</div>
 	<div class="pull-right logowrpRight">
 	  	
-		  	<div id="mydropzone" style="width: 100%;height: 100%;padding: 15px 0 15px 0">	
+		  	<div id="mydropzone_<%=type%>" style="width: 100%;height: 100%;padding: 15px 0 15px 0">	
 			</div>
 		
 	</div>
