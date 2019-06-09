@@ -9,21 +9,24 @@
 				<label style="vertical-align: text-bottom;padding-left: 10px;">
 					
 					<%= link_to enabler.author.name,profile_path(enabler.author),remote: true%>
-					<%if enabler.timeline != current_user.timeline%>
-						<%if enabler.timeline.timeable.class.to_s == 'User'%>
-						&nbsp;
-						>
-						&nbsp;
-						<%= link_to enabler.timeline.timeable.name,profile_path(enabler.timeline.timeable),remote: true%>
-									
-						<% elsif enabler.timeline.timeable.class.to_s == 'Club'%>
-						&nbsp;
-						>
-						&nbsp;
-						<%= link_to "#{enabler.timeline.timeable.name}",community_path(enabler.timeline.timeable.id),remote: true%>
+					<%unless enabler.author.timeline == enabler.timeline%>
 						
-						<%end%>
+							<%if enabler.timeline.timeable.class.to_s == 'User'%>
+								&nbsp;
+								>
+								&nbsp;
+								<%= link_to enabler.timeline.timeable.name,profile_path(enabler.timeline.timeable),remote: true%>
+											
+							<% elsif enabler.timeline.timeable.class.to_s == 'Club'%>
+								&nbsp;
+								>
+								&nbsp;
+								<%= link_to "#{enabler.timeline.timeable.name}",community_path(enabler.timeline.timeable.id),remote: true%>
+								
+							<%end%>
+					
 					<%end%>
+
 				</label>
 				</div>
 					<%case enabler_obj.class.to_s%>
