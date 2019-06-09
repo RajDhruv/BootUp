@@ -1,0 +1,5 @@
+<%case from%>
+<%when :edit%>
+$('#view_id').html('');
+$("#main-timeline").html("<%=j render template:'devise/registrations/edit.html.erb'%>");
+<%end%>
