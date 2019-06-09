@@ -22,6 +22,7 @@
         width: 100%;
       }
     </style>
+    <%if current_user%>
     <div class="wrapper">
     <%user_prefs=current_user.preference%>
         <%=render 'lbd4/sidebar'%>
@@ -43,7 +44,7 @@
                       <%end%>
                     <div class="row">
                         <div class=<%=user_prefs.display_right_panel ? "col-md-8" : "col-md-12"%> style="-webkit-transition: width 2s; /* Safari */
-  transition: width 2s;" id="main_timeline_view">
+                        transition: width 2s;" id="main_timeline_view">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title" id="view_id"></h4>
@@ -75,4 +76,13 @@
             <%=render 'lbd4/footer'%>
         </div>
     </div>
+<%else%>
+    <div style="background: #737b96;width: 100%;height: -webkit-fill-available;color: #b4b8e6;">
+      <center style="padding-top: 3.5%">
+        <div class="jumbotron" style="width: 45%;height: 82vh;overflow-y: auto;">
+          <%= yield %>    
+        </div>
+      </center>
+    </div>
+<%end%>
 </html>
