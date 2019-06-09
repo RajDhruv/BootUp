@@ -49,6 +49,23 @@
             
           </div>
         </div>
+        <%if !my_profile && (current_user.friends_with?(@user) || current_user.blocked_friends.include?(@user))%>
+        &nbsp;
+          <div class="btn-group dropdown">
+            <button type="button" class="btn btn-outline-secondary disabled">
+              <%="Post"%>
+            </button>
+            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropright</span>
+            </button>
+            <div class="dropdown-menu">
+              <!-- Dropdown menu links -->
+              <span id="user_<%=@user.id%>">
+                  <%= render 'shared/new_post'%>
+              </span>
+            </div>
+          </div>
+        <%end%>
     </span>
 </div>
 </div>
