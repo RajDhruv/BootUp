@@ -12,12 +12,6 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-toggle="dropdown">
-                        <i class="nc-icon nc-palette"></i>
-                        <span class="d-lg-none">Dashboard</span>
-                    </a>
-                </li>
                 <li class="dropdown nav-item">
                     <a id="notification_button" class="dropdown-toggle nav-link" data-toggle="dropdown" onclick="read_notification();">
                         <i class="nc-icon nc-planet"></i>
@@ -46,19 +40,21 @@
                         <span class="no-icon">Account</span>
                     </a>
                 </li>
+                <%if logged_in?(:admin)%>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="https://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="no-icon">Dropdown</span>
+                        <span class="no-icon">Admin</span>
                     </a>
+                    
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+        
+                        <%=link_to "Admin", rails_admin_path,class:"dropdown-item",target:"_blank"%>
                         <div class="divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
+                        <%=link_to "Sidekiq", sidekiq_web_path,class:"dropdown-item",target:"_blank"%>
                     </div>
+                    
                 </li>
+                <%end%>
                 <li class="nav-item">
                     <%=link_to "Logout",destroy_user_session_path,method: :delete,class:"nav-link" if current_user%>
                 </li>
