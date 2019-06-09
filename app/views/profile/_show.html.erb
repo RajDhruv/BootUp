@@ -1,7 +1,7 @@
 <%my_profile = (current_user == @user)%>
 <style type="text/css">
 .bgimg {
-    background: url("<%=cover_display_image(current_user)%>") no-repeat;
+    background: url("<%=cover_display_image(@user)%>") no-repeat;
     background-size: cover;
 }
 .img-circle {
@@ -14,12 +14,12 @@
 
 <div class="card card-user text-center">
 <div class="card-image profile-card-image">
-    <img id="cover_picture" src="<%=cover_display_image(current_user)%>" alt="..." style="background-image:url('https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400');background-repeat: no-repeat;" alt="...">
+    <img id="cover_picture" src="<%=cover_display_image(@user)%>" alt="..." style="background-image:url('https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400');background-repeat: no-repeat;" alt="...">
 </div>
 
 <div class="card-body">
 <div class="author">
-                <img id="profile_picture" class="avatar border-gray" src="<%=profile_display_image(current_user)%>" alt="..." style="background-image:url('<%=asset_path('default_logos/default_profile.png')%>');background-repeat: no-repeat;"/>
+                <img id="profile_picture" class="avatar border-gray" src="<%=profile_display_image(@user)%>" alt="..." style="background-image:url('<%=asset_path('default_logos/default_profile.png')%>');background-repeat: no-repeat;"/>
                 </div>
     <span>
     <center>
