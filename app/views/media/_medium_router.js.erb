@@ -1,0 +1,14 @@
+<%if notice%>
+	new Noty({
+		timeout: 1000,
+		type: '<%=type rescue "success"%>',
+		layout: 'topCenter',
+		text: '<%=notice%>'
+	}).show();
+<%end%>
+<%=render 'notifications/notification_panel'%>
+<%case from%>
+<%when :new%>
+	$("#form_title").html("Upload Media");
+	$("#timeline_form").html("<%=j render partial:'form',locals:{medium:@medium,action: :create}%>");
+<%end%>
