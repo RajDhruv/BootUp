@@ -21,7 +21,23 @@
       #upload_area{
         width: 100%;
       }
+    .no-js #loader { display: none;  }
+    .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+    .se-pre-con {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url("<%=asset_path('custom_loader/loader-128x/Preloader_3.gif')%>") center no-repeat #fff;
+    }
     </style>
+    <script type="text/javascript">
+       $(document).ready(function(){$(".se-pre-con").fadeOut("slow");})
+    </script>
+<body>
+    <div class="se-pre-con"></div>
     <%if current_user%>
     <div class="wrapper">
     <%user_prefs=current_user.preference%>
@@ -85,4 +101,5 @@
       </center>
     </div>
 <%end%>
+</body>
 </html>
