@@ -5,8 +5,8 @@ class ApplicationRecord < ActiveRecord::Base
     raise ArgumentError "record_list not an Array of Hashes" unless record_list.is_a?(Array) && record_list.all? {|rec| rec.is_a? Hash }
     return record_list if record_list.empty?
 
-    (1..record_list.count).step(1000).each do |start|
-      key_list, value_list = convert_record_list(record_list[start-1..start+999])
+    record_list.in_groups_of(500,false) do |short_list|
+      key_list, value_list = convert_record_list(short_list)
       sql = "INSERT INTO #{self.table_name} (#{key_list.join(", ")}) VALUES #{value_list.map {|rec| "(#{rec.join(", ")})" }.join(" ,")}"
       self.connection.execute(sql)
     end
