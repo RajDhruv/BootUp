@@ -32,7 +32,7 @@ gem 'ckeditor', github: 'galetahub/ckeditor'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'devise', '~> 4.6', '>= 4.6.1'
+gem 'devise', '~> 4.7'
 gem 'petergate', '~> 2.0', '>= 2.0.1'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'jquery-rails'
