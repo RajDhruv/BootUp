@@ -1,24 +1,11 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# BOOTUP
+BootUp is a social network project based on Ruby on Rails and MySql. It uses Sidekiq for Background Processing, It is dockerized so you can get up and running bu just typing docker-compose up -d
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby 2.4.1
 
-* System dependencies
+* System dependencies : Either Ruby 2.4.1, Rails 5.2.0, MySql, Linux/MacOS
+OR 
+Docker
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
