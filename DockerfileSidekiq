@@ -1,12 +1,8 @@
-FROM ruby:2.4.1
+FROM ruby:2.4.1-alpine
 
-RUN apt-get update && apt-get upgrade -y
+RUN apk add  --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.7/main/ nodejs=8.9.3-r1
 
-RUN apt-get install -y software-properties-common
-
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-
-RUN apt-get install -y nodejs git netcat
+RUN apk update && apk upgrade && apk add ruby ruby-json ruby-io-console ruby-bundler ruby-irb ruby-bigdecimal tzdata postgresql-dev && apk add curl-dev ruby-dev build-base libffi-dev && apk add build-base libxslt-dev libxml2-dev ruby-rdoc mysql-dev sqlite-dev
 
 RUN mkdir /app
 
@@ -14,11 +10,9 @@ WORKDIR /app
 
 RUN gem install bundler
 
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile ./
 
-RUN gem install ovirt-engine-sdk -v '4.3.0' --source 'https://rubygems.org/'
-
-RUN bundle install --binstubs
+RUN bundle install
 
 COPY . .
 
