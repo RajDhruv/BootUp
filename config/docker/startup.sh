@@ -14,7 +14,7 @@ bundle exec rake db:migrate 2>/dev/null || bundle exec rake db:create db:migrate
 echo "Done!"
 
 # Precompile assets for production
-bundle exec rake assets:precompile
+# bundle exec rake assets:precompile
 
 echo "Assets Pre-compiled!"
 
