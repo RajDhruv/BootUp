@@ -1,0 +1,8 @@
+<div class="card",style="width:100%;">
+	<div class="card-header">
+		<%= link_to comment.author.name,profile_path(comment.author),remote: true%>
+	</div>
+	<div class="card-body">
+		<%=comment.description.html_safe%>
+	</div>
+</div>		

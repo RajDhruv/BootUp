@@ -34,7 +34,8 @@ class User < ApplicationRecord
   after_create :create_profile, :create_preference,:create_timeline
   #after_save :create_profile, :create_preference,:create_timeline
   has_friendship#TODO there is a problem with the block / unblock mechanism issue raised if it doesnot get handled we will forl the gem and make the change for ourselves
-
+  delegate :images, to: :profile
+  
   attr_writer :login
 
   def login
@@ -68,9 +69,6 @@ class User < ApplicationRecord
     end
   end
 
-  def images
-    self.profile.images
-  end
 
   def cover_images
     self.profile.cover_pic.images

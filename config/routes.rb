@@ -28,7 +28,15 @@
 		end
 	end
 
-
+	resources :comments,except: [:index,:new, :create, :edit, :update, :destroy, :show]do
+		collection do
+			get 'index/:id',to:'comments#index',as: :all
+		end
+		member do
+			get 'new',to:'comments#new', as: :new
+			post 'create',to:'comments#create', as: :create
+		end
+	end
 	resources :communities do
 		collection do
 			get 'public',to:'communities#public'

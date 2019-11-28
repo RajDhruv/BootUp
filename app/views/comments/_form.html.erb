@@ -1,0 +1,12 @@
+<%=form_for comment,url:{action: action},remote: true do |f|%>
+	<div class="form-group">
+		<%=f.cktext_area :description,class:"form-control",ckeditor:{toolbar: 'mini'}%>
+	</div>			
+		<%=f.submit action==:create ? "Create" : "Update" ,class:"btn btn-outline-success",onclick:"return validate();"%>
+<%end%>
+
+<script type="text/javascript">
+	function validate(){
+		return true;
+	}
+</script>

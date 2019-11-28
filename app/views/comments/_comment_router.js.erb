@@ -1,0 +1,21 @@
+<%if notice%>
+	new Noty({
+		timeout: 1000,
+		type: '<%=type rescue "success"%>',
+		layout: 'topCenter',
+		text: '<%=notice%>'
+	}).show();
+<%end%>
+<%case from%>
+<%when :new%>
+	
+<%when :create%>
+	$("#comment_form_title_<%=@enabler.id%>").html("");
+	$("#comment_form_<%=@enabler.id%>").html("");
+	$("#comments_<%=@enabler.id%>").prepend("<%= j render 'comment',comment:@comment%>");
+<%when :index%>
+	$('#comments_<%=@enabler.id%>').html("<%= j render partial:'comments',locals:{comments:@comments}%>");
+	$("#comment_form_title_<%=@enabler.id%>").html("Write Your Comment:");
+	$("#comment_form_<%=@enabler.id%>").html("<%=j render partial:'form',locals:{comment:@comment,action: :create}%>");
+<%end%>
+<%=render 'notifications/notification_panel'%>
