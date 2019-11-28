@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 	before_action :set_enabler
 	def index
-		@comments = Comment.where(commentable:@enabler)
+		@comments = Comment.where(commentable:@enabler).page(params[:page]).per(5)
 		@comment = Comment.new
 		render partial: 'comment_router.js.erb', locals:{from: :index}
 	end

@@ -1,3 +1,4 @@
 <%comments.each do |comment|%>
 	<%=render 'comment',comment:comment%>
 <%end%>
+<%=paginate @comments, remote:true%>
